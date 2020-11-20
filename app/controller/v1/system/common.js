@@ -19,6 +19,18 @@ const getUploadFileName = function (ext){
   return `${Date.now()}${Number.parseInt(Math.random() * 10000)}.${ext}`;
 }
 
+// 递归创建目录 同步方法
+function mkdirsSync(dirname) {
+  if (fs.existsSync(dirname)) {
+    return true;
+  } else {
+    if (mkdirsSync(path.dirname(dirname, '../../'))) {
+      fs.mkdirSync(dirname);
+      return true;
+    }
+  }
+}
+
 class CommonController extends Controller {  
   
   async login() {
@@ -92,6 +104,7 @@ class CommonController extends Controller {
   // 上传头像
   async upload () {
     const { ctx } = this
+    mkdirsSync('app/public/uploads/')
     // 读取表单提交的文件流
     const stream = await ctx.getFileStream()
     // 获取上传的文件名  like.jpg dog.png 
