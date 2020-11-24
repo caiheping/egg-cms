@@ -89,6 +89,7 @@ class Controller extends BaseController {
       avater: ctx.request.body['avater'],
       email: ctx.request.body['email'],
       mobile: ctx.request.body['mobile'],
+      status: ctx.request.body['status'],
       remark: ctx.request.body['remark']
     }
     let id = ctx.helper.parseInt(ctx.params.id)

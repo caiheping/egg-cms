@@ -2,17 +2,16 @@
 const Controller = require('egg').Controller;
 const path = require('path');
 const fs = require('fs');
-const pump = require('pump');
 const JWT = require('jsonwebtoken');
 
 // 获取文件后缀
-const getUploadFileExt = function (name) {
-  let ext = name.split('.');
-  if (ext[ext.length - 1] === 'blob') {
-    return 'jpg'
-  }
-  return ext[ext.length - 1];
-}
+// const getUploadFileExt = function (name) {
+//   let ext = name.split('.');
+//   if (ext[ext.length - 1] === 'blob') {
+//     return 'jpg'
+//   }
+//   return ext[ext.length - 1];
+// }
 
 // 生成随机文件
 const getUploadFileName = function (ext){
@@ -40,16 +39,16 @@ class CommonController extends Controller {
     // 验证不通过时，阻止后面的代码执行
     if (!validateResult) return
     // 从service文件中拿到返回结果
-    if (ctx.session.code !== query.captcha) {
-      // return ctx.throw(500, '验证码错误');
+    if (ctx.session.code.toLowerCase() !== query.captcha.toLowerCase()) {
+      return ctx.throw(500, '验证码错误');
     }
     const result = await service.v1.system.common.login(query);
     if (!result) {
-      ctx.returnBody(null, 200011);
+      return ctx.throw(500, '用户不存在');
     } else {
-      let checkPwd = await this.ctx.compare(query.password, result.get('password')) // 对比两次密码是否一致
+      let checkPwd = await ctx.compare(query.password, result.get('password')) // 对比两次密码是否一致
       if (!checkPwd) {
-        ctx.returnBody(null, 200012);
+        return ctx.throw(500, '用户名或密码错误');
       } else {
       // 签发token
         const token = JWT.sign(
@@ -101,25 +100,66 @@ class CommonController extends Controller {
     }
   }
 
+  // 修改密码
+  async updateUserPwd() {
+    const {ctx, service} = this;
+    console.log(ctx.state.user.password)
+    let checkPwd = await ctx.compare(ctx.request.body['password'], ctx.state.user.password) // 对比两次密码是否一致
+    console.log(checkPwd)
+    if (!checkPwd) {
+      return ctx.throw(500, '原始密码错误');
+    }
+    ctx.request.body['newPassword'] = await ctx.genHash(ctx.request.body['newPassword'])
+    let query = {
+      password: ctx.request.body['newPassword'],
+    }
+    let id = ctx.helper.parseInt(ctx.params.id)
+    const result = await service.v1.system.user.resetPwd(query, id);
+    if (result) {
+      ctx.returnBody(null, 100030);
+    } else {
+      ctx.returnBody(null, 100031);
+    }
+  }
+
+  // 修改头像
+  async updateUserImg() {
+    const {ctx, service} = this;
+    ctx.request.body['avatar'] = ctx.request.body['avatar']
+    let query = {
+      avatar: ctx.request.body['avatar'],
+    }
+    let id = ctx.helper.parseInt(ctx.params.id)
+    const result = await service.v1.system.user.updateUserImg(query, id);
+    if (result) {
+      ctx.returnBody(null, 100030);
+    } else {
+      ctx.returnBody(null, 100031);
+    }
+  }
+
   // 上传头像
   async upload () {
     const { ctx } = this
-    mkdirsSync('app/public/uploads/')
-    // 读取表单提交的文件流
-    const stream = await ctx.getFileStream()
-    // 获取上传的文件名  like.jpg dog.png 
-    const file_name = path.basename(stream.filename)
-    // 拼接上传路径
-    const upload_path = 'app/public/uploads/' + getUploadFileName(getUploadFileExt(file_name))
-
-    // 创建一个可以写入的流
-    const writeStream = fs.createWriteStream(upload_path)
-
-    // 第一个参数读取流，第二个参数可写流, 上传失败会自动销毁流
-    await pump(stream, writeStream);
+    const file = ctx.request.files[0];
+    const fileinfo = fs.readFileSync(file.filepath);
+    const name = `YLW_${new Date().getTime()}_${file.filename}`;
+    let filePath = `/public/uploads/${name}`;
+    const target = `app/public/uploads/${name}`;
+    try {
+      await fs.writeFileSync(target, fileinfo);
+    } catch (error) {
+      throw error;
+    } finally {
+      await fs.unlink(file.filepath, err => {
+        if (err) {
+          throw err;
+        }
+        console.log('删除缓存文件:' + file.filepath + '成功！');
+      });
+    }
     ctx.returnBody({
-      url: upload_path, // 上传路径
-      fields: stream.fields // 所有表单字段都能通过 `stream.fields` 获取到
+      path: filePath, // 路径
     }, '上传成功');
   }
 }

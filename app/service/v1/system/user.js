@@ -69,6 +69,16 @@ class UsersService extends BaseService {
     });
   }
 
+  // 修改头像
+  async updateUserImg(query, id) {
+    console.log(query)
+    return await this.ctx.model[this.modelName].update(query, {
+      where: {
+        id
+      }
+    });
+  }
+
   // 修改
   async update (query, id) {
     console.log(query, id)

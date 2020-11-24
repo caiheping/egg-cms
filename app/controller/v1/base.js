@@ -26,6 +26,8 @@ class BaseController extends Controller {
   async create() {
     const {ctx, service} = this;
     let query = ctx.request.body
+    query.createdAt = new Date()
+    query.createdBy = ctx.state.user.userName
     const result = await service.v1.system[this.serviceName].create(query);
     if (result) {
       ctx.returnBody(null, 100020);
@@ -38,6 +40,9 @@ class BaseController extends Controller {
   async update() {
     const {ctx, service} = this;
     let query = ctx.request.body
+    console.log(query,8888888)
+    query.updatedAt = new Date()
+    query.updatedBy = ctx.state.user.userName
     const id = this.ctx.helper.parseInt(ctx.params.id);
     const result = await service.v1.system[this.serviceName].update(query, {
       id

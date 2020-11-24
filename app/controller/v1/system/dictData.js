@@ -19,18 +19,18 @@ class Controller extends BaseController {
     const query = {
       limit: ctx.helper.parseInt(ctx.query.pageSize),
       offset: ctx.helper.parseInt(ctx.query.pageNum),
-      dictType: ctx.params.dictType
+      dictType: ctx.query.dictType
     };
-    const result = await service.v1.system[this.serviceName].findList(query);
+    const result = await service.v1.system[this.serviceName].findList(query, [['dictSort', 'ASC']]);
     ctx.returnBody(result, 100010);
   }
 
   // 查询单个
-  async show() {
+  async showByType() {
     const {ctx, service} = this;
     // 查询参数
     const query = {
-      dictType: this.ctx.params.id
+      dictType: this.ctx.params.dictType
     };
     const result = ctx.body = await service.v1.system[this.serviceName].findByType(query);
     ctx.returnBody(result, 100010);

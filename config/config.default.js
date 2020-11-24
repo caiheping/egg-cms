@@ -17,18 +17,24 @@ module.exports = appInfo => {
   config.public = 'v1' // 版本
   config.whiteList = [`/api/${config.public}/login`, `/api/${config.public}/logout`, `/api/${config.public}/captcha`, `/api/${config.public}/wx/*`] // api 白名单
 
+  // file模式上传文件
+  config.multipart = {
+    mode: 'file',
+  };
+
   // add your middleware config here
   config.middleware = [
     'errorHandler', // 全局错误处理
     'jwt'
   ];
+  config.jwt = {
+    secret: 'egg-api-jwt',
+    expiresIn: 60 * 60 * 24 // 1天过期
+  };
+  
   config.bodyParser = {
     jsonLimit: '1mb',
     formLimit: '1mb',
-  };
-  config.jwt = {
-    secret: 'egg-api-jwt',
-    expiresIn: 60*60 // 1小时过期
   };
   config.bcrypt = {
     saltRounds: 10 // default 10

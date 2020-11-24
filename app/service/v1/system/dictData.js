@@ -11,7 +11,6 @@ class UsersService extends BaseService {
   
   // 查询某条数据
   async findByType (query) {
-    console.log(query)
     return await this.ctx.model[this.modelName].findAll({
       where: query
     });
