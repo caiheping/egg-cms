@@ -1,6 +1,7 @@
 'use strict';
-// app/controller/users.js
+
 const BaseService = require("../base");
+const { getDeptWhere } = require("../../../utils/tools");
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -11,6 +12,39 @@ class UsersService extends BaseService {
     this.modelName = 'Users'
   }
 
+  // 查询, 传页面，分页返回，否则全部返回
+  async findList(query, order=[['createdAt', 'DESC']]) {
+    if (query.offset) {
+      query.limit = query.limit ? query.limit : 10
+      query.offset = (query.offset - 1) * query.limit
+    } else {
+      query.limit = null
+      query.offset = null
+    }
+    let obj = {
+      where: {},
+      order,
+      include: [{
+        model: this.ctx.model['Departments']
+      }]
+    }
+    for (let key in query) {
+      if (key !== 'limit' && key !== 'offset') {
+        if (!query[key]) {
+          query[key] = ''
+        }
+        obj.where[key] = {
+          [Op.like]:'%' + query[key] + '%'
+        }
+      }
+    }
+
+    // 部门权限控制
+    obj.where = Object.assign({}, obj.where, getDeptWhere(this.ctx));
+    
+    return await this.ctx.model[this.modelName].findAndCountAll(obj);
+  }
+
   // 查询某条数据
   async findOne (id) {
     return await this.ctx.model[this.modelName].findOne({
@@ -19,8 +53,7 @@ class UsersService extends BaseService {
       },
       include: [{
         model: this.ctx.model['Roles'],
-        as: 'roles',
-        // attributes: ['id', 'roleName', 'roleKey']
+        as: 'roles'
       }]
     })
   }
@@ -81,7 +114,6 @@ class UsersService extends BaseService {
 
   // 修改
   async update (query, id) {
-    console.log(query, id)
     try {
       // 建立事务对象
       let transaction = await this.ctx.model.transaction();
@@ -108,7 +140,6 @@ class UsersService extends BaseService {
         roleQuery.push(obj)
       }
 
-      console.log(roleQuery)
       // 事务批量增操作
       await this.ctx.model.UserRole.bulkCreate(roleQuery, {
           transaction

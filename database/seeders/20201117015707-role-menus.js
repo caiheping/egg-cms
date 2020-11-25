@@ -16,6 +16,30 @@ module.exports = {
         "roleId": 1,
         "menuId": 1
       },
+      {
+        "roleId": 1,
+        "menuId": 2
+      },
+      {
+        "roleId": 1,
+        "menuId": 3
+      },
+      {
+        "roleId": 1,
+        "menuId": 4
+      },
+      {
+        "roleId": 1,
+        "menuId": 5
+      },
+      {
+        "roleId": 1,
+        "menuId": 6
+      },
+      {
+        "roleId": 1,
+        "menuId": 7
+      },
     ], {});
   },
 

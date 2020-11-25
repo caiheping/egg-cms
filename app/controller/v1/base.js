@@ -40,7 +40,6 @@ class BaseController extends Controller {
   async update() {
     const {ctx, service} = this;
     let query = ctx.request.body
-    console.log(query,8888888)
     query.updatedAt = new Date()
     query.updatedBy = ctx.state.user.userName
     const id = this.ctx.helper.parseInt(ctx.params.id);

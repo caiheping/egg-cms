@@ -88,8 +88,10 @@ module.exports = app => {
     }
   });
   Users.associate = function(models) {
+    Users.belongsTo(app.model.Departments, {
+      foreignKey: 'deptId'
+    });
     Users.belongsToMany(app.model.Roles, { through: 'user_roles', foreignKey: 'userId', as: 'roles'});
-    // Roles.belongsToMany(app.model.Menus, { through: 'RoleMenu', as: 'menus'});
   };
   return Users;
 };

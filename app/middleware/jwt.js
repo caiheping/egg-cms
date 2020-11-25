@@ -20,7 +20,9 @@ module.exports = (options, app) => {
           console.log(e);
         }
         const user = await ctx.model.Users.findOne({
-          id: decode.id,
+          where: {
+            id: decode.id
+          },
           include: [{
             model: ctx.model['Roles'],
             as: 'roles'

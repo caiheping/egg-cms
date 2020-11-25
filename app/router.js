@@ -14,6 +14,7 @@ module.exports = app => {
   router.put(`/api/${app.config.public}/system/user/:id/updateUserImg`, controller.v1.system.common.updateUserImg); // 修改头像
   router.put(`/api/${app.config.public}/system/user/:id/updateUserPwd`, controller.v1.system.common.updateUserPwd); // 修改密码
   router.get(`/api/${app.config.public}/system/showByType/:dictType`, controller.v1.system.dictData.showByType); // 字典查询
+  router.get(`/api/${app.config.public}/system/menu/userMenu`, controller.v1.system.menu.userMenu); // 用户菜单
 
   /**
    * 系统模块

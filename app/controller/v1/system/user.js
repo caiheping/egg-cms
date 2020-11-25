@@ -66,7 +66,9 @@ class Controller extends BaseController {
       avater: ctx.request.body['avater'],
       email: ctx.request.body['email'],
       mobile: ctx.request.body['mobile'],
-      remark: ctx.request.body['remark']
+      remark: ctx.request.body['remark'],
+      createdAt: new Date(),
+      createdBy: ctx.state.user.userName
     }
     const result = await service.v1.system[this.serviceName].create(query);
     if (result) {
@@ -90,7 +92,9 @@ class Controller extends BaseController {
       email: ctx.request.body['email'],
       mobile: ctx.request.body['mobile'],
       status: ctx.request.body['status'],
-      remark: ctx.request.body['remark']
+      remark: ctx.request.body['remark'],
+      updatedAt: new Date(),
+      updatedBy: ctx.state.user.userName
     }
     let id = ctx.helper.parseInt(ctx.params.id)
     const result = await service.v1.system[this.serviceName].update(query, id);

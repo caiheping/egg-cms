@@ -8,9 +8,12 @@ class Controller extends BaseController {
     super(...arg)
     this.serviceName = 'menu'
   }
-  // async create () {
-
-  // }
+  
+  async userMenu() {
+    const {ctx, service} = this;
+    const result = await service.v1.system[this.serviceName].findByUser();
+    ctx.returnBody(result, 100010);
+  }
 }
 
 module.exports = Controller;

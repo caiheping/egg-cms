@@ -1,5 +1,5 @@
 'use strict';
-// app/controller/users.js
+
 const BaseService = require("../base");
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;

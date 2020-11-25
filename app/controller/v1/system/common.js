@@ -34,6 +34,7 @@ class CommonController extends Controller {
   
   async login() {
     const { ctx, service } = this;
+    ctx.state.user = null
     const query = ctx.request.body;
     const validateResult = await this.ctx.validate('user.login', query)
     // 验证不通过时，阻止后面的代码执行
@@ -61,6 +62,8 @@ class CommonController extends Controller {
             expiresIn: this.config.jwt.expiresIn,
           }
         );
+        ctx.state.user = result
+        console.log(9999999)
         ctx.returnBody({
           userInfo: result,
           token
