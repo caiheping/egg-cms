@@ -18,7 +18,7 @@ class BaseController extends Controller {
   async show() {
     const {ctx, service} = this;
     let id = ctx.helper.parseInt(this.ctx.params.id)
-    const result = ctx.body = await service.v1.system[this.serviceName].findByPk(id);
+    const result = await service.v1.system[this.serviceName].findByPk(id);
     ctx.returnBody(result, 100010);
   }
 
