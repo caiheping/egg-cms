@@ -53,6 +53,9 @@ module.exports = appInfo => {
       }
     }
   }
+  config.static = {
+    prefix: '/public',
+  };
 
   config.sequelize = {
     dialect: 'mysql', // 表示使用mysql

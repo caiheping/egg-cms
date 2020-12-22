@@ -51,7 +51,7 @@ class CommonController extends Controller {
       if (!checkPwd) {
         return ctx.throw(500, '用户名或密码错误');
       } else {
-      // 签发token
+        // 签发token
         const token = JWT.sign(
           {
             id: result.id,
@@ -63,7 +63,6 @@ class CommonController extends Controller {
           }
         );
         ctx.state.user = result
-        console.log(9999999)
         ctx.returnBody({
           userInfo: result,
           token
@@ -73,9 +72,8 @@ class CommonController extends Controller {
   }
   // 登出
   async logout() {
-    const { ctx, service } = this;
+    const { ctx } = this;
     ctx.state = {}
-    ctx.session.token = null
     ctx.returnBody(null, 0)
   }
   // 验证码
@@ -106,9 +104,7 @@ class CommonController extends Controller {
   // 修改密码
   async updateUserPwd() {
     const {ctx, service} = this;
-    console.log(ctx.state.user.password)
     let checkPwd = await ctx.compare(ctx.request.body['password'], ctx.state.user.password) // 对比两次密码是否一致
-    console.log(checkPwd)
     if (!checkPwd) {
       return ctx.throw(500, '原始密码错误');
     }
@@ -146,7 +142,7 @@ class CommonController extends Controller {
     const { ctx } = this
     const file = ctx.request.files[0];
     const fileinfo = fs.readFileSync(file.filepath);
-    const name = `YLW_${new Date().getTime()}_${file.filename}`;
+    const name = `CHP_${new Date().getTime()}_${file.filename}`;
     let filePath = `/public/uploads/${name}`;
     const target = `app/public/uploads/${name}`;
     try {
