@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-class UsersService extends BaseService {
+class DepartmentsService extends BaseService {
   constructor(...arg) {
     super(...arg)
     this.modelName = 'Departments'
@@ -43,4 +43,4 @@ class UsersService extends BaseService {
   }
 }
 
-module.exports = UsersService;
+module.exports = DepartmentsService;

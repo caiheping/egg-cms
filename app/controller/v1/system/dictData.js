@@ -19,8 +19,11 @@ class Controller extends BaseController {
     const query = {
       limit: ctx.helper.parseInt(ctx.query.pageSize),
       offset: ctx.helper.parseInt(ctx.query.pageNum),
-      dictType: ctx.query.dictType
+      dictType: ctx.query.dictType,
+      dictLabel: ctx.query.dictLabel,
+      status: ctx.query.status
     };
+    console.log(ctx.query)
     const result = await service.v1.system[this.serviceName].findList(query, [['dictSort', 'ASC']]);
     ctx.returnBody(result, 100010);
   }

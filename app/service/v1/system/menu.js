@@ -5,10 +5,19 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-class UsersService extends BaseService {
+class MenusService extends BaseService {
   constructor(...arg) {
     super(...arg)
     this.modelName = 'Menus'
+  }
+
+  async findAllMenu() {
+    let obj = {
+      where: {},
+      order: [['orderNum', 'ASC']]
+    }
+    
+    return await this.ctx.model[this.modelName].findAndCountAll(obj);
   }
 
   async findByUser () {
@@ -31,6 +40,21 @@ class UsersService extends BaseService {
       order: [['orderNum', 'ASC']]
     }
     return await this.ctx.model[this.modelName].findAndCountAll(obj);
+  }
+
+  // 新增
+  async create (query) {
+    query.name = query.component
+    console.log(query)
+    return await this.ctx.model[this.modelName].create(query);
+  }
+
+  
+  // 修改
+  async update (query, where) {
+    return await this.ctx.model[this.modelName].update(query, {
+      where
+    });
   }
 
   // 刪除id
@@ -65,4 +89,4 @@ class UsersService extends BaseService {
   }
 }
 
-module.exports = UsersService;
+module.exports = MenusService;

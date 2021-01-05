@@ -30,17 +30,19 @@ class UsersService extends BaseService {
     }
     for (let key in query) {
       if (key !== 'limit' && key !== 'offset') {
-        if (!query[key]) {
-          query[key] = ''
-        }
-        obj.where[key] = {
-          [Op.like]:'%' + query[key] + '%'
+        if (key === 'deptId') {
+          obj.where[key] = getDeptWhere(this.ctx, {
+            deptId: query.deptId
+          }).deptId
+        } else {
+          obj.where[key] = {
+            // 模糊查询
+            [Op.like]:'%' + query[key] + '%'
+          }
         }
       }
     }
-
-    // 部门权限控制
-    obj.where = Object.assign({}, obj.where, getDeptWhere(this.ctx));
+    console.log(obj, 9999999999)
     
     return await this.ctx.model[this.modelName].findAndCountAll(obj);
   }

@@ -3,7 +3,7 @@
 const BaseService = require("../base");
 
 
-class UsersService extends BaseService {
+class DictDataService extends BaseService {
   constructor(...arg) {
     super(...arg)
     this.modelName = 'DictData'
@@ -17,4 +17,4 @@ class UsersService extends BaseService {
   }
 }
 
-module.exports = UsersService;
+module.exports = DictDataService;

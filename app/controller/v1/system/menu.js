@@ -8,6 +8,12 @@ class Controller extends BaseController {
     super(...arg)
     this.serviceName = 'menu'
   }
+  // 查询
+  async index() {
+    const {ctx, service} = this;
+    const result = await service.v1.system[this.serviceName].findAllMenu();
+    ctx.returnBody(result, 100010);
+  }
   
   async userMenu() {
     const {ctx, service} = this;

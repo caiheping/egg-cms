@@ -10,7 +10,8 @@ class Controller extends BaseController {
   }
   // 查询用户信息
   async getInfo () {
-    const { ctx } = this;
+    const { ctx, service } = this;
+    // id1为超级管理员，拥有全部权限
     if (ctx.state.user.id === 1) {
       ctx.returnBody({
         permissions:[
@@ -19,10 +20,11 @@ class Controller extends BaseController {
         user: ctx.state.user
       }, 100010);
     } else {
+      const result = await service.v1.system['menu'].findByUser(ctx.state.user.id)
+      let list = result.rows.filter(item => item.menuType === 'F')
+      let permissions = list.map(list => list.perms)
       ctx.returnBody({
-        permissions:[
-          "system:dept:list"
-        ],
+        permissions,
         user: ctx.state.user
       }, 100010);
     }
@@ -35,8 +37,9 @@ class Controller extends BaseController {
     const query = {
       limit: ctx.helper.parseInt(ctx.query.pageSize),
       offset: ctx.helper.parseInt(ctx.query.pageNum),
-      userName: ctx.query.userName,
-      status: ctx.query.status
+      userName: ctx.query.userName ? ctx.query.userName : '',
+      status: ctx.query.status ? ctx.query.status : '',
+      deptId: parseInt(ctx.query.deptId)
     };
     const result = await service.v1.system[this.serviceName].findList(query);
     ctx.returnBody(result, 100010);

@@ -9,6 +9,18 @@ class Controller extends BaseController {
     this.serviceName = 'department'
   }
 
+  // 查询单个
+  async index() {
+    const {ctx, service} = this;
+    // 查询参数
+    const query = {
+      limit: ctx.helper.parseInt(ctx.query.pageSize),
+      offset: ctx.helper.parseInt(ctx.query.pageNum)
+    };
+    const result = await service.v1.system[this.serviceName].findList(query, [['orderNum', 'ASC']]);
+    ctx.returnBody(result, 100010);
+  }
+
   // 修改
   async update() {
     const {ctx, service} = this;

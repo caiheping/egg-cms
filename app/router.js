@@ -5,6 +5,7 @@
  */
 module.exports = app => {
   const { router, controller } = app;
+  // 特殊处理
   router.post(`/api/${app.config.public}/login`, controller.v1.system.common.login); // 登录
   router.post(`/api/${app.config.public}/logout`, controller.v1.system.common.logout); // 登出
   router.get(`/api/${app.config.public}/captcha`, controller.v1.system.common.captcha); // 验证码
@@ -15,6 +16,7 @@ module.exports = app => {
   router.put(`/api/${app.config.public}/system/user/:id/updateUserPwd`, controller.v1.system.common.updateUserPwd); // 修改密码
   router.get(`/api/${app.config.public}/system/showByType/:dictType`, controller.v1.system.dictData.showByType); // 字典查询
   router.get(`/api/${app.config.public}/system/menu/userMenu`, controller.v1.system.menu.userMenu); // 用户菜单
+  router.put(`/api/${app.config.public}/system/role/changeRoleStatus`, controller.v1.system.role.changeRoleStatus); // 修改角色状态
 
   /**
    * 系统模块
@@ -25,4 +27,10 @@ module.exports = app => {
   router.resources('department', `/api/${app.config.public}/system/department`, controller.v1.system.department); // 部门路由
   router.resources('dictType', `/api/${app.config.public}/system/dictType`, controller.v1.system.dictType); // 字典类型路由
   router.resources('dictData', `/api/${app.config.public}/system/dictData`, controller.v1.system.dictData); // 字典数据路由
+  router.resources('notice', `/api/${app.config.public}/system/notice`, controller.v1.system.notice); // 字典数据路由
+
+  /**
+   * 文章模块
+   */
+  // router.resources('article', `/api/${app.config.public}/system/article`, controller.v1.system.article); // 文章路由
 };

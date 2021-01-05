@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 class BaseService extends Service {
-  // 查询, 传页面，分页返回，否则全部返回
+  // 查询, 传页码，分页返回，否则全部返回
   async findList(query, order=[['createdAt', 'DESC']]) {
     if (query.offset) {
       query.limit = query.limit ? query.limit : 10

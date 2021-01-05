@@ -6,58 +6,10 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-class UsersService extends BaseService {
+class RolesService extends BaseService {
   constructor(...arg) {
     super(...arg)
     this.modelName = 'Roles'
-  }
-
-  // 查询, 传页面，分页返回，否则全部返回
-  async findList(query, order=[['createdAt', 'DESC']]) {
-    // 部门权限控制
-    let where = getDeptWhere(this.ctx);
-    let users = await this.ctx.model["Users"].findAll({
-      where
-    });
-
-    let userIds = users.map(item => item.id);
-
-    let roles = await this.ctx.model['UserRole'].findAll({
-      where: {
-        userId: {
-          [Op.or]: userIds
-        }
-      }
-    });
-    let roleIds = roles.map(item => item.roleId)
-
-    if (query.offset) {
-      query.limit = query.limit ? query.limit : 10
-      query.offset = (query.offset - 1) * query.limit
-    } else {
-      query.limit = null
-      query.offset = null
-    }
-    let obj = {
-      where: {},
-      order
-    }
-    for (let key in query) {
-      if (key !== 'limit' && key !== 'offset') {
-        if (!query[key]) {
-          query[key] = ''
-        }
-        obj.where[key] = {
-          [Op.like]:'%' + query[key] + '%'
-        }
-      }
-    }
-
-    obj.where.id = {
-      [Op.or]: roleIds
-    }
-
-    return await this.ctx.model[this.modelName].findAndCountAll(obj);
   }
 
   // 查询某条数据
@@ -95,12 +47,20 @@ class UsersService extends BaseService {
       // 事务批量增操作
       await this.ctx.model.RoleMenu.bulkCreate(menuQuery, {
         transaction
-    });
-    // 提交事务
-    await transaction.commit();
+      });
+      // 提交事务
+      await transaction.commit();
+      return true
     } catch (error) {
       this.ctx.throw(500, '服务器错误') 
     }
+  }
+
+  // 修改状态
+  async updateStatus(query, where) {
+    return await this.ctx.model[this.modelName].update(query, {
+      where
+    });
   }
 
   // 修改
@@ -109,7 +69,7 @@ class UsersService extends BaseService {
       // 建立事务对象
       let transaction = await this.ctx.model.transaction();
       
-      // 事务增操作
+      // 事务操作
       await this.ctx.model[this.modelName].update(query, {
         where,
         transaction
@@ -121,7 +81,6 @@ class UsersService extends BaseService {
         transaction
       })
       let menuIds = this.ctx.request.body['menuIds']
-      console.log(menuIds, 111)
       let menuQuery = []
       for (let i = 0; i < menuIds.length; i++) {
         let obj = {}
@@ -139,6 +98,7 @@ class UsersService extends BaseService {
       await transaction.commit();
       return true
     } catch (error) {
+      console.log(error)
       this.ctx.throw(500, '服务器错误');
     }
   }
@@ -174,4 +134,4 @@ class UsersService extends BaseService {
   }
 }
 
-module.exports = UsersService;
+module.exports = RolesService;
