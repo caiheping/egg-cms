@@ -1,12 +1,11 @@
 'use strict';
 
 const BaseService = require("../base");
-const { getDeptWhere } = require("../../../utils/tools");
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-class RolesService extends BaseService {
+class Service extends BaseService {
   constructor(...arg) {
     super(...arg)
     this.modelName = 'Roles'
@@ -74,6 +73,7 @@ class RolesService extends BaseService {
         where,
         transaction
       });
+      // 删除原来的数据
       await this.ctx.model.RoleMenu.destroy({
         where: {
           roleId: where.id
@@ -88,8 +88,6 @@ class RolesService extends BaseService {
         obj.roleId = where.id
         menuQuery.push(obj)
       }
-
-      console.log(menuQuery)
       // 事务批量增操作
       await this.ctx.model.RoleMenu.bulkCreate(menuQuery, {
           transaction
@@ -134,4 +132,4 @@ class RolesService extends BaseService {
   }
 }
 
-module.exports = RolesService;
+module.exports = Service;

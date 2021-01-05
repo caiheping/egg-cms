@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-class DictTypeService extends BaseService {
+class Service extends BaseService {
   constructor(...arg) {
     super(...arg)
     this.modelName = 'DictType'
@@ -13,7 +13,6 @@ class DictTypeService extends BaseService {
 
   // 删除
   async destroy (ids) {
-    console.log(ids)
     try {
       // 建立事务对象
       let transaction = await this.ctx.model.transaction();
@@ -53,4 +52,4 @@ class DictTypeService extends BaseService {
   }
 }
 
-module.exports = DictTypeService;
+module.exports = Service;

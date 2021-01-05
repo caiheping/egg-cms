@@ -11,7 +11,7 @@ class Controller extends BaseController {
   // 查询用户信息
   async getInfo () {
     const { ctx, service } = this;
-    // id1为超级管理员，拥有全部权限
+    // id为1的超级管理员，拥有全部权限
     if (ctx.state.user.id === 1) {
       ctx.returnBody({
         permissions:[

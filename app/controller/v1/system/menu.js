@@ -15,6 +15,7 @@ class Controller extends BaseController {
     ctx.returnBody(result, 100010);
   }
   
+  // 查询用户菜单
   async userMenu() {
     const {ctx, service} = this;
     const result = await service.v1.system[this.serviceName].findByUser();

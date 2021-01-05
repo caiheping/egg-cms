@@ -14,7 +14,6 @@ class BaseService extends Service {
       query.limit = null
       query.offset = null
     }
-    console.log(order)
     let obj = {
       where: {},
       order

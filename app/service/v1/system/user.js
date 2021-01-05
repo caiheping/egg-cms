@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-class UsersService extends BaseService {
+class Service extends BaseService {
   constructor(...arg) {
     super(...arg)
     this.modelName = 'Users'
@@ -42,7 +42,6 @@ class UsersService extends BaseService {
         }
       }
     }
-    console.log(obj, 9999999999)
     
     return await this.ctx.model[this.modelName].findAndCountAll(obj);
   }
@@ -189,4 +188,4 @@ class UsersService extends BaseService {
   }
 }
 
-module.exports = UsersService;
+module.exports = Service;

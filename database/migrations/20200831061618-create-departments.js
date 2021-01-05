@@ -26,8 +26,8 @@ module.exports = {
       },
       status: {
         type: STRING,
-        defaultValue: '0',
-        comment: '部门状态（0正常 1停用）'
+        defaultValue: '1',
+        comment: '部门状态（1正常 0停用）'
       },
       isDelete: {
         type: STRING,

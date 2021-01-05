@@ -34,8 +34,8 @@ module.exports = app => {
     },
     isFrame: {
       type: STRING,
-      defaultValue: '1',
-      comment: '是否为外链（0是 1否）'
+      defaultValue: '0',
+      comment: '是否为外链（1是 0否）'
     },
     menuType: {
       type: STRING,
@@ -44,8 +44,8 @@ module.exports = app => {
     },
     visible: {
       type: STRING,
-      defaultValue: '0',
-      comment: '菜单显示状态（0显示 1隐藏）'
+      defaultValue: '1',
+      comment: '菜单显示状态（1显示 0隐藏）'
     },
     orderNum: {
       allowNull: false,
@@ -54,8 +54,8 @@ module.exports = app => {
     },
     status: {
       type: STRING,
-      defaultValue: '0',
-      comment: '菜单状态（0正常 1停用）'
+      defaultValue: '1',
+      comment: '菜单状态（1正常 0停用）'
     },
     perms: {
       type: STRING,

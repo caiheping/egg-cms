@@ -59,8 +59,8 @@ module.exports = app => {
     },
     status: {
       type: STRING,
-      defaultValue: '0',
-      comment: '帐号状态（0正常 1停用）'
+      defaultValue: '1',
+      comment: '帐号状态（1正常 0停用）'
     },
     remark: {
       type: STRING,

@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-class MenusService extends BaseService {
+class Service extends BaseService {
   constructor(...arg) {
     super(...arg)
     this.modelName = 'Menus'
@@ -30,12 +30,12 @@ class MenusService extends BaseService {
       }
     })
     let menuIds = menus.map(item => item.menuId)
-    console.log(menuIds)
     let obj = {
       where: {
         id: {
           [Op.or]: menuIds
-        }
+        },
+        status: '1' // 查询启用的菜单
       },
       order: [['orderNum', 'ASC']]
     }
@@ -44,8 +44,7 @@ class MenusService extends BaseService {
 
   // 新增
   async create (query) {
-    query.name = query.component
-    console.log(query)
+    query.name = query.component; // name 和 component 一样
     return await this.ctx.model[this.modelName].create(query);
   }
 
@@ -89,4 +88,4 @@ class MenusService extends BaseService {
   }
 }
 
-module.exports = MenusService;
+module.exports = Service;

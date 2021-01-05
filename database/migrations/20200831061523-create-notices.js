@@ -26,8 +26,8 @@ module.exports = {
       },
       status: {
         type: Sequelize.STRING,
-        defaultValue: '0',
-        comment: '公告状态（0正常 1停用）'
+        defaultValue: '1',
+        comment: '公告状态（1正常 0停用）'
       },
       remark: {
         type: Sequelize.STRING,

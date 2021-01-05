@@ -21,8 +21,8 @@ module.exports = {
       },
       status: {
         type: STRING,
-        defaultValue: '0',
-        comment: '菜单状态（0正常 1停用）'
+        defaultValue: '1',
+        comment: '菜单状态（1正常 2停用）'
       },
       remark: {
         type: STRING,

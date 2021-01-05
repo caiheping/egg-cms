@@ -15,12 +15,12 @@ module.exports = {
       {
         "dictSort": 1,
         "dictLabel": "正常",
-        "dictValue": "0",
+        "dictValue": "1",
         "dictType": "sys_show_hide",
         "cssClass": null,
         "listClass": null,
         "isDefault": "Y",
-        "status": "0",
+        "status": "1",
         "remark": "正常",
         createdAt: new Date(),
         createdBy: 'admin'
@@ -28,7 +28,7 @@ module.exports = {
       {
         "dictSort": 2,
         "dictLabel": "停用",
-        "dictValue": "1",
+        "dictValue": "0",
         "dictType": "sys_show_hide",
         "cssClass": null,
         "listClass": null,
@@ -41,12 +41,12 @@ module.exports = {
       {
         "dictSort": 1,
         "dictLabel": "正常",
-        "dictValue": "0",
+        "dictValue": "1",
         "dictType": "sys_normal_disable",
         "cssClass": null,
         "listClass": null,
         "isDefault": "Y",
-        "status": "0",
+        "status": "1",
         "remark": "正常",
         createdAt: new Date(),
         createdBy: 'admin'
@@ -54,7 +54,7 @@ module.exports = {
       {
         "dictSort": 2,
         "dictLabel": "停用",
-        "dictValue": "1",
+        "dictValue": "0",
         "dictType": "sys_normal_disable",
         "cssClass": null,
         "listClass": null,

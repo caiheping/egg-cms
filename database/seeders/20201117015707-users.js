@@ -21,7 +21,7 @@ module.exports = {
       "email": null,
       "mobile": null,
       "isDelete": "0",
-      "status": "0",
+      "status": "1",
       "remark": "",
       "createdBy": 'admin',
       "createdAt": new Date(),

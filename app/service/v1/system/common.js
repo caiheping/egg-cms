@@ -10,6 +10,9 @@ class CommonService extends Service {
     const result = await ctx.model.Users.findOne({
       where: {
         userName: query.userName
+      },
+      include: {
+        model: this.ctx.model['Departments']
       }
     });
     return result;

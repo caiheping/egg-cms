@@ -4,32 +4,6 @@ const path = require('path');
 const fs = require('fs');
 const JWT = require('jsonwebtoken');
 
-// 获取文件后缀
-// const getUploadFileExt = function (name) {
-//   let ext = name.split('.');
-//   if (ext[ext.length - 1] === 'blob') {
-//     return 'jpg'
-//   }
-//   return ext[ext.length - 1];
-// }
-
-// 生成随机文件
-const getUploadFileName = function (ext){
-  return `${Date.now()}${Number.parseInt(Math.random() * 10000)}.${ext}`;
-}
-
-// 递归创建目录 同步方法
-function mkdirsSync(dirname) {
-  if (fs.existsSync(dirname)) {
-    return true;
-  } else {
-    if (mkdirsSync(path.dirname(dirname, '../../'))) {
-      fs.mkdirSync(dirname);
-      return true;
-    }
-  }
-}
-
 class CommonController extends Controller {  
   
   async login() {
@@ -50,6 +24,10 @@ class CommonController extends Controller {
       let checkPwd = await ctx.compare(query.password, result.get('password')) // 对比两次密码是否一致
       if (!checkPwd) {
         return ctx.throw(500, '用户名或密码错误');
+      } else if (result.status === '0') {
+        return ctx.throw(500, '该用户已经被停用！');
+      } else if (result.department.status === '0') {
+        return ctx.throw(500, '该用户所在部门已经被停用！');
       } else {
         // 签发token
         const token = JWT.sign(

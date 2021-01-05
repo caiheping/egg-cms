@@ -16,7 +16,7 @@ module.exports = {
       roleKey: 'admin',
       roleSort: 1,
       dataScope: '1',
-      status: '0',
+      status: '1',
       createdAt: new Date(),
       createdBy: 'admin'
     }], {});

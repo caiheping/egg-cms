@@ -23,7 +23,6 @@ class Controller extends BaseController {
       dictLabel: ctx.query.dictLabel,
       status: ctx.query.status
     };
-    console.log(ctx.query)
     const result = await service.v1.system[this.serviceName].findList(query, [['dictSort', 'ASC']]);
     ctx.returnBody(result, 100010);
   }
