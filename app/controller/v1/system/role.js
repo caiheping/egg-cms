@@ -7,6 +7,7 @@ class Controller extends BaseController {
   constructor(...arg) {
     super(...arg)
     this.serviceName = 'role'
+    this.modleName = 'system'
   }
 
   // 修改角色状态
@@ -17,7 +18,7 @@ class Controller extends BaseController {
       status: ctx.request.body.status
     };
     const id = this.ctx.helper.parseInt(ctx.request.body.id);
-    const result = await service.v1.system[this.serviceName].updateStatus(query, {
+    const result = await service.v1[this.modleName][this.serviceName].updateStatus(query, {
       id
     });
     if (result) {
@@ -37,7 +38,7 @@ class Controller extends BaseController {
       roleName: ctx.query.roleName,
       status: ctx.query.status
     };
-    const result = await service.v1.system[this.serviceName].findList(query, [['roleSort', 'ASC']]);
+    const result = await service.v1[this.modleName][this.serviceName].findList(query, [['roleSort', 'ASC']]);
     ctx.returnBody(result, 100010);
   }
 
@@ -45,7 +46,7 @@ class Controller extends BaseController {
   async show() {
     const {ctx, service} = this;
     let id = ctx.helper.parseInt(this.ctx.params.id)
-    const result = ctx.body = await service.v1.system[this.serviceName].findOne(id);
+    const result = ctx.body = await service.v1[this.modleName][this.serviceName].findOne(id);
     ctx.returnBody(result, 100010);
   }
 }

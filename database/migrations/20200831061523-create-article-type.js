@@ -1,33 +1,27 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('notices', {
+    await queryInterface.createTable('article_types', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      noticeTitle: {
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        comment: '用户id'
+      },
+      title: {
         allowNull: false,
         type: Sequelize.STRING,
-        comment: '公告标题'
+        comment: '名称'
       },
-      noticeType: {
+      orderNum: {
         allowNull: false,
-        type: Sequelize.STRING,
-        defaultValue: '1',
-        comment: '公告类型（1通知 2公告）'
-      },
-      noticeContent: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        comment: '内容'
-      },
-      status: {
-        type: Sequelize.STRING,
-        defaultValue: '1',
-        comment: '公告状态（1正常 0停用）'
+        type: Sequelize.INTEGER,
+        comment: '显示排序'
       },
       remark: {
         type: Sequelize.STRING,
@@ -56,6 +50,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('notices');
+    await queryInterface.dropTable('article_types');
   }
 };

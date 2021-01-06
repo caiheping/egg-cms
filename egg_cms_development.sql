@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 05/01/2021 16:49:42
+ Date: 06/01/2021 15:22:06
 */
 
 SET NAMES utf8mb4;
@@ -132,7 +132,7 @@ CREATE TABLE `menus`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 42 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of menus
@@ -144,9 +144,8 @@ INSERT INTO `menus` VALUES (4, 2, '角色管理', 'role', 'Role', 'Role', '1', '
 INSERT INTO `menus` VALUES (5, 2, '菜单管理', 'menu', 'Menu', 'Menu', '1', 'C', '1', 3, '1', '', '#', '0', NULL, '2020-11-25 15:49:13', 'admin', '2021-01-05 15:10:57', 'admin');
 INSERT INTO `menus` VALUES (6, 2, '部门管理', 'dept', 'Dept', 'Dept', '1', 'C', '1', 4, '1', '', '#', '0', NULL, '2020-11-25 15:49:13', 'admin', '2021-01-05 15:11:06', 'admin');
 INSERT INTO `menus` VALUES (7, 2, '字典管理', 'dict', 'Dict', 'Dict', '1', 'C', '1', 6, '1', '', '#', '0', NULL, '2020-11-25 15:49:13', 'admin', '2021-01-05 15:11:11', 'admin');
-INSERT INTO `menus` VALUES (8, 0, '文章管理', '/article', 'Layout', 'Layout', '1', 'M', '1', 10, '1', NULL, 'article', '0', NULL, '2021-01-04 15:52:39', 'admin', '2021-01-05 15:08:32', 'admin');
+INSERT INTO `menus` VALUES (8, 0, '博客管理', '/article', 'Layout', 'Layout', '1', 'M', '1', 10, '1', NULL, 'article', '0', NULL, '2021-01-04 15:52:39', 'admin', '2021-01-06 14:57:16', 'admin');
 INSERT INTO `menus` VALUES (9, 8, '文章列表', 'articleList', 'ArticleList', 'ArticleList', '1', 'C', '1', 1, '1', NULL, '#', '0', NULL, '2021-01-04 16:09:36', 'admin', '2021-01-05 15:10:38', 'admin');
-INSERT INTO `menus` VALUES (12, 8, '类型管理', 'articleType', 'ArticleType', 'ArticleType', '1', 'C', '1', 2, '1', NULL, '#', '0', NULL, '2021-01-04 16:43:50', 'admin', '2021-01-05 15:10:43', 'admin');
 INSERT INTO `menus` VALUES (13, 3, '查询', NULL, NULL, NULL, '1', 'F', '0', 1, '0', 'system:user:list', '#', '0', NULL, '2021-01-04 16:46:28', 'admin', NULL, NULL);
 INSERT INTO `menus` VALUES (14, 3, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '0', 'system:user:add', '#', '0', NULL, '2021-01-04 16:47:31', 'admin', NULL, NULL);
 INSERT INTO `menus` VALUES (15, 3, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '0', 'system:user:update', '#', '0', NULL, '2021-01-04 16:47:51', 'admin', NULL, NULL);
@@ -176,6 +175,7 @@ INSERT INTO `menus` VALUES (38, 37, '查询', NULL, NULL, NULL, '1', 'F', '0', 1
 INSERT INTO `menus` VALUES (39, 37, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '0', 'system:notice:add', '#', '0', NULL, '2021-01-05 14:06:51', 'admin', NULL, NULL);
 INSERT INTO `menus` VALUES (40, 37, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '0', 'system:notice:update', '#', '0', NULL, '2021-01-05 14:07:10', 'admin', NULL, NULL);
 INSERT INTO `menus` VALUES (41, 37, '删除', NULL, NULL, NULL, '1', 'F', '0', 4, '0', 'system:notice:delete', '#', '0', NULL, '2021-01-05 14:07:28', 'admin', NULL, NULL);
+INSERT INTO `menus` VALUES (42, 8, '文章类型', 'articleType', 'ArticleType', 'ArticleType', '1', 'C', '1', 3, '1', NULL, '#', '0', NULL, '2021-01-06 15:05:31', 'admin', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for notices
@@ -184,8 +184,8 @@ DROP TABLE IF EXISTS `notices`;
 CREATE TABLE `notices`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `noticeTitle` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '公告标题',
-  `noticeType` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '公告类型',
-  `noticeContent` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '1' COMMENT '公告类型（1通知 2公告）',
+  `noticeType` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '公告类型（1通知 2公告）',
+  `noticeContent` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '1' COMMENT '公告内容',
   `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '公告状态（0正常 1停用）',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   `createdAt` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
@@ -193,7 +193,7 @@ CREATE TABLE `notices`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for role_menus
@@ -204,50 +204,11 @@ CREATE TABLE `role_menus`  (
   `roleId` int(11) NOT NULL COMMENT '角色roleId',
   `menuId` int(11) NOT NULL COMMENT '菜单menuId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 252 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 352 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role_menus
 -- ----------------------------
-INSERT INTO `role_menus` VALUES (252, 1, 1);
-INSERT INTO `role_menus` VALUES (253, 1, 8);
-INSERT INTO `role_menus` VALUES (254, 1, 9);
-INSERT INTO `role_menus` VALUES (255, 1, 12);
-INSERT INTO `role_menus` VALUES (256, 1, 2);
-INSERT INTO `role_menus` VALUES (257, 1, 3);
-INSERT INTO `role_menus` VALUES (258, 1, 13);
-INSERT INTO `role_menus` VALUES (259, 1, 14);
-INSERT INTO `role_menus` VALUES (260, 1, 15);
-INSERT INTO `role_menus` VALUES (261, 1, 16);
-INSERT INTO `role_menus` VALUES (262, 1, 4);
-INSERT INTO `role_menus` VALUES (263, 1, 17);
-INSERT INTO `role_menus` VALUES (264, 1, 18);
-INSERT INTO `role_menus` VALUES (265, 1, 19);
-INSERT INTO `role_menus` VALUES (266, 1, 20);
-INSERT INTO `role_menus` VALUES (267, 1, 5);
-INSERT INTO `role_menus` VALUES (268, 1, 21);
-INSERT INTO `role_menus` VALUES (269, 1, 22);
-INSERT INTO `role_menus` VALUES (270, 1, 23);
-INSERT INTO `role_menus` VALUES (271, 1, 24);
-INSERT INTO `role_menus` VALUES (272, 1, 6);
-INSERT INTO `role_menus` VALUES (273, 1, 25);
-INSERT INTO `role_menus` VALUES (274, 1, 26);
-INSERT INTO `role_menus` VALUES (275, 1, 27);
-INSERT INTO `role_menus` VALUES (276, 1, 28);
-INSERT INTO `role_menus` VALUES (277, 1, 7);
-INSERT INTO `role_menus` VALUES (278, 1, 29);
-INSERT INTO `role_menus` VALUES (279, 1, 30);
-INSERT INTO `role_menus` VALUES (280, 1, 31);
-INSERT INTO `role_menus` VALUES (281, 1, 32);
-INSERT INTO `role_menus` VALUES (282, 1, 33);
-INSERT INTO `role_menus` VALUES (283, 1, 34);
-INSERT INTO `role_menus` VALUES (284, 1, 35);
-INSERT INTO `role_menus` VALUES (285, 1, 36);
-INSERT INTO `role_menus` VALUES (286, 1, 37);
-INSERT INTO `role_menus` VALUES (287, 1, 38);
-INSERT INTO `role_menus` VALUES (288, 1, 39);
-INSERT INTO `role_menus` VALUES (289, 1, 40);
-INSERT INTO `role_menus` VALUES (290, 1, 41);
 INSERT INTO `role_menus` VALUES (291, 7, 1);
 INSERT INTO `role_menus` VALUES (292, 7, 3);
 INSERT INTO `role_menus` VALUES (293, 7, 13);
@@ -270,6 +231,45 @@ INSERT INTO `role_menus` VALUES (309, 7, 33);
 INSERT INTO `role_menus` VALUES (310, 7, 2);
 INSERT INTO `role_menus` VALUES (311, 7, 5);
 INSERT INTO `role_menus` VALUES (312, 7, 7);
+INSERT INTO `role_menus` VALUES (313, 1, 1);
+INSERT INTO `role_menus` VALUES (314, 1, 8);
+INSERT INTO `role_menus` VALUES (315, 1, 9);
+INSERT INTO `role_menus` VALUES (316, 1, 42);
+INSERT INTO `role_menus` VALUES (317, 1, 2);
+INSERT INTO `role_menus` VALUES (318, 1, 3);
+INSERT INTO `role_menus` VALUES (319, 1, 13);
+INSERT INTO `role_menus` VALUES (320, 1, 14);
+INSERT INTO `role_menus` VALUES (321, 1, 15);
+INSERT INTO `role_menus` VALUES (322, 1, 16);
+INSERT INTO `role_menus` VALUES (323, 1, 4);
+INSERT INTO `role_menus` VALUES (324, 1, 17);
+INSERT INTO `role_menus` VALUES (325, 1, 18);
+INSERT INTO `role_menus` VALUES (326, 1, 19);
+INSERT INTO `role_menus` VALUES (327, 1, 20);
+INSERT INTO `role_menus` VALUES (328, 1, 5);
+INSERT INTO `role_menus` VALUES (329, 1, 21);
+INSERT INTO `role_menus` VALUES (330, 1, 22);
+INSERT INTO `role_menus` VALUES (331, 1, 23);
+INSERT INTO `role_menus` VALUES (332, 1, 24);
+INSERT INTO `role_menus` VALUES (333, 1, 6);
+INSERT INTO `role_menus` VALUES (334, 1, 25);
+INSERT INTO `role_menus` VALUES (335, 1, 26);
+INSERT INTO `role_menus` VALUES (336, 1, 27);
+INSERT INTO `role_menus` VALUES (337, 1, 28);
+INSERT INTO `role_menus` VALUES (338, 1, 7);
+INSERT INTO `role_menus` VALUES (339, 1, 29);
+INSERT INTO `role_menus` VALUES (340, 1, 30);
+INSERT INTO `role_menus` VALUES (341, 1, 31);
+INSERT INTO `role_menus` VALUES (342, 1, 32);
+INSERT INTO `role_menus` VALUES (343, 1, 33);
+INSERT INTO `role_menus` VALUES (344, 1, 34);
+INSERT INTO `role_menus` VALUES (345, 1, 35);
+INSERT INTO `role_menus` VALUES (346, 1, 36);
+INSERT INTO `role_menus` VALUES (347, 1, 37);
+INSERT INTO `role_menus` VALUES (348, 1, 38);
+INSERT INTO `role_menus` VALUES (349, 1, 39);
+INSERT INTO `role_menus` VALUES (350, 1, 40);
+INSERT INTO `role_menus` VALUES (351, 1, 41);
 
 -- ----------------------------
 -- Table structure for roles
@@ -294,7 +294,7 @@ CREATE TABLE `roles`  (
 -- ----------------------------
 -- Records of roles
 -- ----------------------------
-INSERT INTO `roles` VALUES (1, '超级管理员', 'admin', 1, '1', '1', '0', NULL, '2020-11-25 15:49:13', 'admin', '2021-01-05 15:50:45', 'admin');
+INSERT INTO `roles` VALUES (1, '超级管理员', 'admin', 1, '1', '1', '0', NULL, '2020-11-25 15:49:13', 'admin', '2021-01-06 15:06:49', 'admin');
 INSERT INTO `roles` VALUES (7, 'ces', 'ces', 2, '1', '1', '0', NULL, '2021-01-04 17:16:55', 'admin', '2021-01-05 15:50:49', 'admin');
 
 -- ----------------------------
@@ -329,7 +329,7 @@ CREATE TABLE `user_roles`  (
   `userId` int(11) NOT NULL COMMENT '用户id',
   `roleId` int(11) NOT NULL COMMENT '角色id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_roles

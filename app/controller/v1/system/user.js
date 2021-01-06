@@ -7,6 +7,7 @@ class Controller extends BaseController {
   constructor(...arg) {
     super(...arg)
     this.serviceName = 'user'
+    this.modleName = 'system'
   }
   // 查询用户信息
   async getInfo () {
@@ -20,7 +21,7 @@ class Controller extends BaseController {
         user: ctx.state.user
       }, 100010);
     } else {
-      const result = await service.v1.system['menu'].findByUser(ctx.state.user.id)
+      const result = await service.v1[this.modleName]['menu'].findByUser(ctx.state.user.id)
       let list = result.rows.filter(item => item.menuType === 'F')
       let permissions = list.map(list => list.perms)
       ctx.returnBody({
@@ -41,7 +42,7 @@ class Controller extends BaseController {
       status: ctx.query.status ? ctx.query.status : '',
       deptId: parseInt(ctx.query.deptId)
     };
-    const result = await service.v1.system[this.serviceName].findList(query);
+    const result = await service.v1[this.modleName][this.serviceName].findList(query);
     ctx.returnBody(result, 100010);
   }
 
@@ -49,7 +50,7 @@ class Controller extends BaseController {
   async show() {
     const {ctx, service} = this;
     let id = ctx.helper.parseInt(this.ctx.params.id)
-    const result = ctx.body = await service.v1.system[this.serviceName].findOne(id);
+    const result = ctx.body = await service.v1[this.modleName][this.serviceName].findOne(id);
     ctx.returnBody(result, 100010);
   }
 
@@ -73,7 +74,7 @@ class Controller extends BaseController {
       createdAt: new Date(),
       createdBy: ctx.state.user.userName
     }
-    const result = await service.v1.system[this.serviceName].create(query);
+    const result = await service.v1[this.modleName][this.serviceName].create(query);
     if (result) {
       ctx.returnBody(null, 100020);
     } else {
@@ -100,7 +101,7 @@ class Controller extends BaseController {
       updatedBy: ctx.state.user.userName
     }
     let id = ctx.helper.parseInt(ctx.params.id)
-    const result = await service.v1.system[this.serviceName].update(query, id);
+    const result = await service.v1[this.modleName][this.serviceName].update(query, id);
     if (result) {
       ctx.returnBody(null, 100030);
     } else {
@@ -112,7 +113,7 @@ class Controller extends BaseController {
   async destroy() {
     const {ctx, service} = this;
     const ids = ctx.params.id.split(',');
-    const result = await service.v1.system[this.serviceName].destroy(ids);
+    const result = await service.v1[this.modleName][this.serviceName].destroy(ids);
     
     if (result) {
       ctx.returnBody(null, 100040);

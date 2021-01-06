@@ -7,6 +7,7 @@ class Controller extends BaseController {
   constructor(...arg) {
     super(...arg)
     this.serviceName = 'notice'
+    this.modleName = 'system'
   }
 
   // 查询
@@ -19,7 +20,7 @@ class Controller extends BaseController {
       noticeTitle: ctx.query.noticeTitle,
       noticeType: ctx.query.noticeType
     };
-    const result = await service.v1.system[this.serviceName].findList(query);
+    const result = await service.v1[this.modleName][this.serviceName].findList(query);
     ctx.returnBody(result, 100010);
   }
 }

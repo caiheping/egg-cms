@@ -7,6 +7,7 @@ class Controller extends BaseController {
   constructor(...arg) {
     super(...arg)
     this.serviceName = 'dictData'
+    this.modleName = 'system'
   }
 
   // 查询
@@ -23,7 +24,7 @@ class Controller extends BaseController {
       dictLabel: ctx.query.dictLabel,
       status: ctx.query.status
     };
-    const result = await service.v1.system[this.serviceName].findList(query, [['dictSort', 'ASC']]);
+    const result = await service.v1[this.modleName][this.serviceName].findList(query, [['dictSort', 'ASC']]);
     ctx.returnBody(result, 100010);
   }
 
@@ -34,7 +35,7 @@ class Controller extends BaseController {
     const query = {
       dictType: this.ctx.params.dictType
     };
-    const result = ctx.body = await service.v1.system[this.serviceName].findByType(query);
+    const result = ctx.body = await service.v1[this.modleName][this.serviceName].findByType(query);
     ctx.returnBody(result, 100010);
   }
 }

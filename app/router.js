@@ -17,6 +17,10 @@ module.exports = app => {
   router.get(`/api/${app.config.public}/system/showByType/:dictType`, controller.v1.system.dictData.showByType); // 字典查询
   router.get(`/api/${app.config.public}/system/menu/userMenu`, controller.v1.system.menu.userMenu); // 用户菜单
   router.put(`/api/${app.config.public}/system/role/changeRoleStatus`, controller.v1.system.role.changeRoleStatus); // 修改角色状态
+  /**
+   * 博客模块特殊处理
+   * */ 
+  router.get(`/api/${app.config.public}/blog/articleType/getAllType`, controller.v1.blog.articleType.getAllType); // 获取所有类型
 
   /**
    * 系统模块
@@ -30,7 +34,8 @@ module.exports = app => {
   router.resources('notice', `/api/${app.config.public}/system/notice`, controller.v1.system.notice); // 字典数据路由
 
   /**
-   * 文章模块
+   * 博客模块
    */
-  // router.resources('article', `/api/${app.config.public}/system/article`, controller.v1.system.article); // 文章路由
+  router.resources('article', `/api/${app.config.public}/blog/article`, controller.v1.blog.article); // 文章路由
+  router.resources('articleType', `/api/${app.config.public}/blog/articleType`, controller.v1.blog.articleType); // 文章类型路由
 };
