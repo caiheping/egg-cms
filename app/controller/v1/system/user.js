@@ -49,6 +49,8 @@ class Controller extends BaseController {
   // 查询单个
   async show() {
     const {ctx, service} = this;
+    let validateResult = await ctx.checkValidate(ctx.params, 'base.show')
+    if (!validateResult) return
     let id = ctx.helper.parseInt(this.ctx.params.id)
     const result = ctx.body = await service.v1[this.modleName][this.serviceName].findOne(id);
     ctx.returnBody(result, 100010);
@@ -57,8 +59,7 @@ class Controller extends BaseController {
   // 新增
   async create() {
     const {ctx, service} = this;
-    const validateResult = await ctx.validate('user.post', ctx.request.body)
-    // 验证不通过时，阻止后面的代码执行
+    let validateResult = await ctx.checkValidate(ctx.request.body, 'user.create')
     if (!validateResult) return
     ctx.request.body['password'] = await ctx.genHash(ctx.request.body['password'])
     let query = {
@@ -85,9 +86,10 @@ class Controller extends BaseController {
   // 修改
   async update() {
     const {ctx, service} = this;
-    const validateResult = await ctx.validate('user.post', ctx.request.body)
-    // 验证不通过时，阻止后面的代码执行
+    let validate = Object.assign({}, ctx.request.body, ctx.params)
+    let validateResult = await ctx.checkValidate(validate, 'user.update')
     if (!validateResult) return
+    
     let query = {
       deptId: ctx.request.body['deptId'],
       nickName: ctx.request.body['nickName'],
@@ -112,6 +114,8 @@ class Controller extends BaseController {
   // 删除
   async destroy() {
     const {ctx, service} = this;
+    let validateResult = await ctx.checkValidate(ctx.params, 'base.destroy')
+    if (!validateResult) return
     const ids = ctx.params.id.split(',');
     const result = await service.v1[this.modleName][this.serviceName].destroy(ids);
     

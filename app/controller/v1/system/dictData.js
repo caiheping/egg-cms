@@ -13,7 +13,7 @@ class Controller extends BaseController {
   // 查询
   async index() {
     const {ctx, service} = this;
-    const validateResult = await ctx.validate('dict.list', ctx.request.query)
+    const validateResult = await ctx.checkValidate(ctx.query, this.serviceName + '.index')
     // 验证不通过时，阻止后面的代码执行
     if (!validateResult) return
     // 查询参数
@@ -31,9 +31,12 @@ class Controller extends BaseController {
   // 查询单个
   async showByType() {
     const {ctx, service} = this;
+    const validateResult = await ctx.checkValidate(ctx.params, this.serviceName + '.index')
+    // 验证不通过时，阻止后面的代码执行
+    if (!validateResult) return
     // 查询参数
     const query = {
-      dictType: this.ctx.params.dictType
+      dictType: ctx.params.dictType
     };
     const result = ctx.body = await service.v1[this.modleName][this.serviceName].findByType(query);
     ctx.returnBody(result, 100010);

@@ -25,6 +25,8 @@ class Controller extends BaseController {
   // 修改
   async update() {
     const {ctx, service} = this;
+    let validateResult = await ctx.checkValidate(ctx.request.body, this.serviceName + '.update')
+    if (!validateResult) return
     let query = ctx.request.body
     const id = this.ctx.helper.parseInt(ctx.params.id);
     const result = await service.v1[this.modleName][this.serviceName].update(query, {

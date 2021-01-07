@@ -65,6 +65,11 @@ class CommonController extends Controller {
   // 重置密码
   async resetPwd() {
     const {ctx, service} = this;
+    let validate = Object.assign({}, ctx.request.body, ctx.params)
+    const validateResult = await this.ctx.validate('user.resetPwd', validate)
+    // 验证不通过时，阻止后面的代码执行
+    if (!validateResult) return
+
     ctx.request.body['newPassword'] = await ctx.genHash(ctx.request.body['newPassword'])
     let query = {
       password: ctx.request.body['newPassword'],
@@ -81,6 +86,10 @@ class CommonController extends Controller {
   // 修改密码
   async updateUserPwd() {
     const {ctx, service} = this;
+    let validate = Object.assign({}, ctx.request.body, ctx.params)
+    const validateResult = await this.ctx.validate('user.updatePwd', validate)
+    // 验证不通过时，阻止后面的代码执行
+    if (!validateResult) return
     let checkPwd = await ctx.compare(ctx.request.body['password'], ctx.state.user.password) // 对比两次密码是否一致
     if (!checkPwd) {
       return ctx.throw(500, '原始密码错误');
@@ -101,6 +110,11 @@ class CommonController extends Controller {
   // 修改头像
   async updateUserImg() {
     const {ctx, service} = this;
+    
+    let validate = Object.assign({}, ctx.request.body, ctx.params)
+    const validateResult = await this.ctx.validate('user.updateUserImg', validate)
+    // 验证不通过时，阻止后面的代码执行
+    if (!validateResult) return
     ctx.request.body['avatar'] = ctx.request.body['avatar']
     let query = {
       avatar: ctx.request.body['avatar'],
@@ -117,6 +131,9 @@ class CommonController extends Controller {
   // 上传头像
   async upload () {
     const { ctx } = this
+    if (!ctx.request.files.length) {
+      return ctx.returnBody(null, 200015);
+    }
     const file = ctx.request.files[0];
     const fileinfo = fs.readFileSync(file.filepath);
     const name = `CHP_${new Date().getTime()}_${file.filename}`;

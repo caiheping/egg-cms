@@ -10,4 +10,12 @@ module.exports = {
       data
     };
   },
+  async checkValidate(rules, path) {
+    try { // 校验规则, 如果沒有新建文件则不校验
+      let validate = Object.assign({}, rules)
+      return await this.validate(path, validate)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 };
