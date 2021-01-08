@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><!--[if IE]><link rel="icon" href="/public/admin/favicon.ico"><![endif]--><title>后台管理系统</title><style>html,
+      body,
+      #app {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+      .chromeframe {
+        margin: 0.2em 0;
+        background: #ccc;
+        color: #000;
+        padding: 0.2em 0;
+      }
+
+      #loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999999;
+      }
+
+      #loader {
+        display: block;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #FFF;
+        -webkit-animation: spin 2s linear infinite;
+        -ms-animation: spin 2s linear infinite;
+        -moz-animation: spin 2s linear infinite;
+        -o-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        z-index: 1001;
+      }
+
+      #loader:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #FFF;
+        -webkit-animation: spin 3s linear infinite;
+        -moz-animation: spin 3s linear infinite;
+        -o-animation: spin 3s linear infinite;
+        -ms-animation: spin 3s linear infinite;
+        animation: spin 3s linear infinite;
+      }
+
+      #loader:after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #FFF;
+        -moz-animation: spin 1.5s linear infinite;
+        -o-animation: spin 1.5s linear infinite;
+        -ms-animation: spin 1.5s linear infinite;
+        -webkit-animation: spin 1.5s linear infinite;
+        animation: spin 1.5s linear infinite;
+      }
+
+
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+
+      #loader-wrapper .loader-section {
+        position: fixed;
+        top: 0;
+        width: 51%;
+        height: 100%;
+        background: #409EFF;
+        z-index: 1000;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      #loader-wrapper .loader-section.section-left {
+        left: 0;
+      }
+
+      #loader-wrapper .loader-section.section-right {
+        right: 0;
+      }
+
+
+      .loaded #loader-wrapper .loader-section.section-left {
+        -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        transform: translateX(-100%);
+        -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+        transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+      }
+
+      .loaded #loader-wrapper .loader-section.section-right {
+        -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        transform: translateX(100%);
+        -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+        transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+      }
+
+      .loaded #loader {
+        opacity: 0;
+        -webkit-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+      }
+
+      .loaded #loader-wrapper {
+        visibility: hidden;
+        -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+        transform: translateY(-100%);
+        -webkit-transition: all 0.3s 1s ease-out;
+        transition: all 0.3s 1s ease-out;
+      }
+
+      .no-js #loader-wrapper {
+        display: none;
+      }
+
+      .no-js h1 {
+        color: #222222;
+      }
+
+      #loader-wrapper .load_title {
+        font-family: 'Open Sans';
+        color: #FFF;
+        font-size: 19px;
+        width: 100%;
+        text-align: center;
+        z-index: 9999999999999;
+        position: absolute;
+        top: 60%;
+        opacity: 1;
+        line-height: 30px;
+      }
+
+      #loader-wrapper .load_title span {
+        font-weight: normal;
+        font-style: italic;
+        font-size: 13px;
+        color: #FFF;
+        opacity: 0.5;
+      }</style><link href=/public/admin/css/chunk-10f4e926.76df9ad6.css rel=prefetch><link href=/public/admin/css/chunk-1b24ef2e.6bee9e35.css rel=prefetch><link href=/public/admin/css/chunk-59214fb8.b6804cb3.css rel=prefetch><link href=/public/admin/css/chunk-75ae40d4.1be8f26f.css rel=prefetch><link href=/public/admin/css/chunk-85e48624.84f98409.css rel=prefetch><link href=/public/admin/css/chunk-f8f40746.81a997b0.css rel=prefetch><link href=/public/admin/js/chunk-10f4e926.49c3feb3.js rel=prefetch><link href=/public/admin/js/chunk-1b24ef2e.d9e9bdac.js rel=prefetch><link href=/public/admin/js/chunk-2d0b1626.7d39dbb9.js rel=prefetch><link href=/public/admin/js/chunk-2d0b309a.944d2c17.js rel=prefetch><link href=/public/admin/js/chunk-2d0e19c3.7cdd53dc.js rel=prefetch><link href=/public/admin/js/chunk-2d2304b4.c3b60a46.js rel=prefetch><link href=/public/admin/js/chunk-3a6dfb12.2b210308.js rel=prefetch><link href=/public/admin/js/chunk-3b0424d2.26ec49f3.js rel=prefetch><link href=/public/admin/js/chunk-50042a9c.207226b0.js rel=prefetch><link href=/public/admin/js/chunk-582b2a7a.19762ac7.js rel=prefetch><link href=/public/admin/js/chunk-59214fb8.ba9bb00c.js rel=prefetch><link href=/public/admin/js/chunk-75ae40d4.32cb55b5.js rel=prefetch><link href=/public/admin/js/chunk-7e67ce5b.45148604.js rel=prefetch><link href=/public/admin/js/chunk-85e48624.3ad8dd04.js rel=prefetch><link href=/public/admin/js/chunk-d19c1a98.b21389b1.js rel=prefetch><link href=/public/admin/js/chunk-d8932806.464f42f2.js rel=prefetch><link href=/public/admin/js/chunk-f8f40746.88eb2955.js rel=prefetch><link href=/public/admin/css/app.7055c2b8.css rel=preload as=style><link href=/public/admin/css/chunk-vendors.75a1f2a3.css rel=preload as=style><link href=/public/admin/js/app.2a8e0532.js rel=preload as=script><link href=/public/admin/js/chunk-vendors.4132e84a.js rel=preload as=script><link href=/public/admin/css/chunk-vendors.75a1f2a3.css rel=stylesheet><link href=/public/admin/css/app.7055c2b8.css rel=stylesheet><link rel=icon type=image/png sizes=32x32 href=/public/admin/img/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/public/admin/img/icons/favicon-16x16.png><link rel=manifest href=/public/admin/manifest.json><meta name=theme-color content=#4DBA87><meta name=apple-mobile-web-app-capable content=no><meta name=apple-mobile-web-app-status-bar-style content=default><meta name=apple-mobile-web-app-title content=vue-template><link rel=apple-touch-icon href=/public/admin/img/icons/apple-touch-icon-152x152.png><link rel=mask-icon href=/public/admin/img/icons/safari-pinned-tab.svg color=#4DBA87><meta name=msapplication-TileImage content=/public/admin/img/icons/msapplication-icon-144x144.png><meta name=msapplication-TileColor content=#000000></head><body><div id=app><div id=loader-wrapper><div id=loader></div><div class="loader-section section-left"></div><div class="loader-section section-right"></div><div class=load_title>正在加载系统资源，请耐心等待</div></div></div><script src=/public/admin/js/chunk-vendors.4132e84a.js></script><script src=/public/admin/js/app.2a8e0532.js></script></body></html>
