@@ -10,12 +10,12 @@ cms-api 为前后端分离的后台管理系统
 
 前端技术栈：vue全家桶 + axios + elementUI 等
 
-前端项目地址：https://gitee.com/caiheping/vue-cms.git
+前端项目地址：https://github.com/caiheping/vue-cms
 
 ### 项目运行
 
 ```bash
-git clone https://gitee.com/caiheping/egg-cms.git
+git clone https://github.com/caiheping/egg-cms.git
 cd egg-cms
 npm install
 ```
