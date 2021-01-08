@@ -33,7 +33,7 @@ module.exports = {
         "cssClass": null,
         "listClass": null,
         "isDefault": "Y",
-        "status": "0",
+        "status": "1",
         "remark": "停用",
         createdAt: new Date(),
         createdBy: 'admin'
@@ -59,7 +59,7 @@ module.exports = {
         "cssClass": null,
         "listClass": null,
         "isDefault": "Y",
-        "status": "0",
+        "status": "1",
         "remark": "停用",
         createdAt: new Date(),
         createdBy: 'admin'
@@ -72,7 +72,7 @@ module.exports = {
         "cssClass": null,
         "listClass": null,
         "isDefault": "Y",
-        "status": "0",
+        "status": "1",
         "remark": "男",
         createdAt: new Date(),
         createdBy: 'admin'
@@ -85,7 +85,7 @@ module.exports = {
         "cssClass": null,
         "listClass": null,
         "isDefault": "Y",
-        "status": "0",
+        "status": "1",
         "remark": "女",
         createdAt: new Date(),
         createdBy: 'admin'
