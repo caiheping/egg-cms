@@ -16,7 +16,7 @@ cms-api 为前后端分离的后台管理系统
 ### 项目运行
 
 ```bash
-git clone https://gitee.com/caiheping/egg-cms.git
+git clone https://gitee.com/caiheping/egg-cms.git 
 cd egg-cms
 npm install
 ```
