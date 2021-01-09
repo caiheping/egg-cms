@@ -10,9 +10,9 @@ cms-api 为前后端分离的后台管理系统。
 
 前端技术栈：vue全家桶 + axios + elementUI 等
 
-前端项目地址（码云）：https://gitee.com/caiheping/vue-cms.git
+前端项目地址（码云）：https://gitee.com/caiheping/vue-cms
 
-前端项目地址（GitHub）：https://github.com/caiheping/vue-cms.git
+前端项目地址（GitHub）：https://github.com/caiheping/vue-cms
 
 ### 环境
 
@@ -53,16 +53,6 @@ admin登录账号：admin，密码： 123456
 - [x] 菜单管理 -- 完成
 - [x] 部门管理 -- 完成
 - [x] 通知公告 -- 完成
-
-## 截图
-
-登录页
-
-
-
-用户中心
-
-![1610174193240](README.assets/1610174193240.png)
 
 
 
