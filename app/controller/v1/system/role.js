@@ -27,20 +27,21 @@ class Controller extends BaseController {
   // 修改角色状态
   async changeRoleStatus () {
     const {ctx, service} = this;
-    let validateResult = await ctx.checkValidate(ctx.request.body, this.serviceName + '.showByType')
-    if (!validateResult) return
     // 查询参数
     const query = {
       status: ctx.request.body.status
     };
     const id = this.ctx.helper.parseInt(ctx.request.body.id);
+    // if (id === 1) {
+    //   return ctx.returnBody(null, 200016);
+    // }
     const result = await service.v1[this.modleName][this.serviceName].updateStatus(query, {
       id
     });
     if (result) {
       ctx.returnBody(null, 100030);
     } else {
-      ctx.returnBody(null, 100031);
+      ctx.returnBody(null, 100031, 500);
     }
   }
 

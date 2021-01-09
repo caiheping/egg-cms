@@ -103,6 +103,24 @@ class Service extends BaseService {
 
   // 删除
   async destroy (ids) {
+    const userRole = await this.ctx.model['UserRole'].findAll({
+      where: {
+        roleId: {
+          [Op.or]: ids
+        }
+      }
+    });
+    const idLists = userRole.map(item => item.userId)
+    const users = await this.ctx.model['Users'].findAll({
+      where: {
+        id: {
+          [Op.or]: idLists
+        }
+      }
+    })
+    if (users.length) {
+      this.ctx.throw(500, '角色下存在用户，不允许删除！');
+    }
     try {
       // 建立事务对象
       let transaction = await this.ctx.model.transaction();
@@ -127,7 +145,7 @@ class Service extends BaseService {
       await transaction.commit();
       return true
     } catch (error) {
-      this.ctx.throw(500, '服务器错误') 
+      this.ctx.throw(500, '服务器错误');
     }
   }
 }

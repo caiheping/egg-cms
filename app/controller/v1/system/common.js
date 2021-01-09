@@ -79,7 +79,7 @@ class CommonController extends Controller {
     if (result) {
       ctx.returnBody(null, 100030);
     } else {
-      ctx.returnBody(null, 100031);
+      ctx.returnBody(null, 100031, 500);
     }
   }
 
@@ -103,7 +103,7 @@ class CommonController extends Controller {
     if (result) {
       ctx.returnBody(null, 100030);
     } else {
-      ctx.returnBody(null, 100031);
+      ctx.returnBody(null, 100031, 500);
     }
   }
 
@@ -124,7 +124,7 @@ class CommonController extends Controller {
     if (result) {
       ctx.returnBody(null, 100030);
     } else {
-      ctx.returnBody(null, 100031);
+      ctx.returnBody(null, 100031, 500);
     }
   }
 
@@ -132,7 +132,7 @@ class CommonController extends Controller {
   async upload () {
     const { ctx } = this
     if (!ctx.request.files.length) {
-      return ctx.returnBody(null, 200015);
+      return ctx.returnBody(null, 200015, 500);
     }
     const file = ctx.request.files[0];
     const fileinfo = fs.readFileSync(file.filepath);

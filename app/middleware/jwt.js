@@ -10,6 +10,7 @@ module.exports = (options, app) => {
       const token = ctx.request.header.authorization ? ctx.request.header.authorization.split(' ')[1] : null;
       if (!token) {
         ctx.throw(401, '未登录， 请先登录');
+        // next()
       } else { // 当前token值存在
         let decode;
         try {

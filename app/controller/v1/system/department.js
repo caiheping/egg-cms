@@ -35,7 +35,7 @@ class Controller extends BaseController {
     if (result) {
       ctx.returnBody(null, 100030);
     } else {
-      ctx.returnBody(null, 100031);
+      ctx.returnBody(null, 100031, 500);
     }
   }
 }

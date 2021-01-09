@@ -3,7 +3,8 @@ const httpCode = require('../utils/http-code');
 
 module.exports = {
   // response通用返回
-  returnBody(data = null, code = 0) {
+  returnBody(data = null, code = 0, status = 200) {
+    this.status = status
     this.body = {
       code,
       message: httpCode[code] ? httpCode[code] : 'success',

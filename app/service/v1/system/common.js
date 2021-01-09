@@ -11,9 +11,15 @@ class CommonService extends Service {
       where: {
         userName: query.userName
       },
-      include: {
-        model: this.ctx.model['Departments']
-      }
+      include: [
+        {
+          model: this.ctx.model['Departments']
+        },
+        // {
+        //   model: this.ctx.model['Roles'],
+        //   as: 'roles'
+        // }
+      ]
     });
     return result;
   }

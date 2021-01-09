@@ -79,7 +79,7 @@ class Controller extends BaseController {
     if (result) {
       ctx.returnBody(null, 100020);
     } else {
-      ctx.returnBody(null, 100021);
+      ctx.returnBody(null, 100021, 500);
     }
   }
 
@@ -107,7 +107,7 @@ class Controller extends BaseController {
     if (result) {
       ctx.returnBody(null, 100030);
     } else {
-      ctx.returnBody(null, 100031);
+      ctx.returnBody(null, 100031, 500);
     }
   }
 
@@ -122,7 +122,7 @@ class Controller extends BaseController {
     if (result) {
       ctx.returnBody(null, 100040);
     } else {
-      ctx.returnBody(null, 100041);
+      ctx.returnBody(null, 100041, 500);
     }
   }
 }

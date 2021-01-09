@@ -15,11 +15,15 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1605250020379_4355';
   config.public = 'v1' // 版本
-  config.whiteList = [`/api/${config.public}/login`, `/api/${config.public}/logout`, `/api/${config.public}/captcha`] // api 白名单
+  config.whiteList = [`/api/${config.public}/login`, `/api/${config.public}/logout`, `/api/${config.public}/captcha`, '/public/*'] // api 白名单
 
   // file模式上传文件
   config.multipart = {
     mode: 'file',
+  };
+
+  config.static = {
+    prefix: '/public',
   };
 
   // add your middleware config here
@@ -53,9 +57,6 @@ module.exports = appInfo => {
       }
     }
   }
-  config.static = {
-    prefix: '/public',
-  };
 
   config.sequelize = {
     dialect: 'mysql', // 表示使用mysql
