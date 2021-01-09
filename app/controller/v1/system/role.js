@@ -32,9 +32,6 @@ class Controller extends BaseController {
       status: ctx.request.body.status
     };
     const id = this.ctx.helper.parseInt(ctx.request.body.id);
-    // if (id === 1) {
-    //   return ctx.returnBody(null, 200016);
-    // }
     const result = await service.v1[this.modleName][this.serviceName].updateStatus(query, {
       id
     });

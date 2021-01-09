@@ -111,14 +111,7 @@ class Service extends BaseService {
       }
     });
     const idLists = userRole.map(item => item.userId)
-    const users = await this.ctx.model['Users'].findAll({
-      where: {
-        id: {
-          [Op.or]: idLists
-        }
-      }
-    })
-    if (users.length) {
+    if (idLists.length) {
       this.ctx.throw(500, '角色下存在用户，不允许删除！');
     }
     try {
