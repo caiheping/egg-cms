@@ -38,7 +38,7 @@ npm install
 
 > npm run dev
 
-浏览器打开 http://127.0.0.1:7001/public/admin/index.html/#/login
+浏览器打开 http://127.0.0.1:7001/admin/index.html#/login
 
 admin登录账号：admin，密码： 123456
 普通用户账号密码自己用admin去用户管理创建

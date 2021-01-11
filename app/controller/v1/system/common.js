@@ -137,7 +137,7 @@ class CommonController extends Controller {
     const file = ctx.request.files[0];
     const fileinfo = fs.readFileSync(file.filepath);
     const name = `CHP_${new Date().getTime()}_${file.filename}`;
-    let filePath = `/public/uploads/${name}`;
+    let filePath = `/uploads/${name}`;
     const target = `app/public/uploads/${name}`;
     try {
       await fs.writeFileSync(target, fileinfo);
