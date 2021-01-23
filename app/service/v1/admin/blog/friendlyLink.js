@@ -1,0 +1,20 @@
+'use strict';
+
+const BaseService = require("../../base");
+
+
+class Service extends BaseService {
+  constructor(...arg) {
+    super(...arg)
+    this.modelName = 'FriendlyLink'
+  }
+
+  async findAll (query) {
+    let obj = {
+      where: query
+    }
+    return await this.ctx.model[this.modelName].findAndCountAll(obj);
+  }
+}
+
+module.exports = Service;

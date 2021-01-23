@@ -11,12 +11,13 @@ module.exports = {
       data
     };
   },
-  async checkValidate(rules, path) {
+  async checkValidate(datas, path) {
     try { // 校验规则, 如果沒有新建文件则不校验
-      let validate = Object.assign({}, rules)
+      let validate = Object.assign({}, datas)
       return await this.validate(path, validate)
     } catch (error) {
       console.log(error)
+      return true
     }
   }
 };

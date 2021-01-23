@@ -14,10 +14,18 @@ module.exports = appInfo => {
    **/
   const config = exports = {};
 
+  // config.cluster = {
+  //   listen: {
+  //     path: '',
+  //     port: 7001,
+  //     hostname: '0.0.0.0'
+  //   }
+  // }
+
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1605250020379_4355';
   config.public = 'v1' // 版本
-  config.whiteList = [`/api/${config.public}/login`, `/api/${config.public}/logout`, `/api/${config.public}/captcha`] // api 白名单
+  config.whiteList = ['/', `/api/${config.public}/login`, `/api/${config.public}/logout`, `/api/${config.public}/captcha`, `/api/${config.public}/front/*`] // api 白名单
 
   // file模式上传文件
   config.multipart = {

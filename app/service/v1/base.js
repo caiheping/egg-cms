@@ -7,16 +7,18 @@ const Op = Sequelize.Op;
 class BaseService extends Service {
   // 查询, 传页码，分页返回，否则全部返回
   async findList(query, order=[['createdAt', 'DESC']]) {
-    if (query.offset) {
-      query.limit = query.limit ? query.limit : 10
-      query.offset = (query.offset - 1) * query.limit
-    } else {
-      query.limit = null
-      query.offset = null
-    }
     let obj = {
       where: {},
       order
+    }
+    if (query.offset) {
+      query.limit = query.limit ? query.limit : 10
+      query.offset = (query.offset - 1) * query.limit
+      obj.limit = query.limit
+      obj.offset = query.offset
+    } else {
+      query.limit = null
+      query.offset = null
     }
     for (let key in query) {
       if (key !== 'limit' && key !== 'offset') {
@@ -28,7 +30,6 @@ class BaseService extends Service {
         }
       }
     }
-    
     return await this.ctx.model[this.modelName].findAndCountAll(obj);
   }
 

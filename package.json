@@ -30,7 +30,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-cms-api",
+    "start": "egg-scripts start --daemon --title=egg-server-cms-api --ignore-stderr",
     "stop": "egg-scripts stop --title=egg-server-cms-api",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",

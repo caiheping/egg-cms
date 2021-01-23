@@ -18,6 +18,11 @@ module.exports = {
         type: Sequelize.STRING,
         comment: '名称'
       },
+      key: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        comment: '键值'
+      },
       orderNum: {
         allowNull: false,
         type: Sequelize.INTEGER,

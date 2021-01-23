@@ -10,7 +10,7 @@ class BaseController extends Controller {
       limit: ctx.helper.parseInt(ctx.query.pageSize),
       offset: ctx.helper.parseInt(ctx.query.pageNum)
     };
-    const result = await service.v1[this.modleName][this.serviceName].findList(query);
+    const result = await service[this.app.config.public].admin[this.modleName][this.serviceName].findList(query);
     ctx.returnBody(result, 100010);
   }
 
@@ -20,7 +20,7 @@ class BaseController extends Controller {
     let validateResult = await ctx.checkValidate(ctx.params, 'base.show')
     if (!validateResult) return
     let id = ctx.helper.parseInt(ctx.params.id)
-    const result = await service.v1[this.modleName][this.serviceName].findByPk(id);
+    const result = await service[this.app.config.public].admin[this.modleName][this.serviceName].findByPk(id);
     ctx.returnBody(result, 100010);
   }
 
@@ -32,7 +32,7 @@ class BaseController extends Controller {
     let query = ctx.request.body
     query.createdAt = new Date()
     query.createdBy = ctx.state.user.userName
-    const result = await service.v1[this.modleName][this.serviceName].create(query);
+    const result = await service[this.app.config.public].admin[this.modleName][this.serviceName].create(query);
     if (result) {
       ctx.returnBody(null, 100020);
     } else {
@@ -49,7 +49,7 @@ class BaseController extends Controller {
     query.updatedAt = new Date()
     query.updatedBy = ctx.state.user.userName
     const id = this.ctx.helper.parseInt(ctx.params.id);
-    const result = await service.v1[this.modleName][this.serviceName].update(query, {
+    const result = await service[this.app.config.public].admin[this.modleName][this.serviceName].update(query, {
       id
     });
     if (result) {
@@ -65,7 +65,7 @@ class BaseController extends Controller {
     let validateResult = await ctx.checkValidate(ctx.params, 'base.destroy')
     if (!validateResult) return
     const ids = ctx.params.id.split(',');
-    const result = await service.v1[this.modleName][this.serviceName].destroy(ids);
+    const result = await service[this.app.config.public].admin[this.modleName][this.serviceName].destroy(ids);
     
     if (result) {
       ctx.returnBody(null, 100040);
