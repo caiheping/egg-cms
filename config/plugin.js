@@ -16,5 +16,10 @@ module.exports = {
   validatePlus: {
     enable: true,
     package: 'egg-validate-plus',
+  },
+  // 跨域问题
+  cors: {
+    enable: true,
+    package: 'egg-cors',
   }
 };
