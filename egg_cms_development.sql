@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : cai
+ Source Server         : 127.0.0.1
  Source Server Type    : MySQL
  Source Server Version : 80016
- Source Host           : localhost:3306
+ Source Host           : 127.0.0.1:3306
  Source Schema         : egg_cms_development
 
  Target Server Type    : MySQL
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 19/01/2021 18:35:23
+ Date: 28/01/2021 09:16:21
 */
 
 SET NAMES utf8mb4;
@@ -33,12 +33,14 @@ CREATE TABLE `article_types`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of article_types
 -- ----------------------------
-INSERT INTO `article_types` VALUES (1, 1, '技术', '1', 1, '技术', '2021-01-08 12:11:17', 'admin', '2021-01-19 17:14:48', 'admin');
+INSERT INTO `article_types` VALUES (2, 1, 'linux', 'linux', 1, 'centos', '2021-01-22 15:38:00', 'admin', '2021-01-22 16:52:38', 'admin');
+INSERT INTO `article_types` VALUES (3, 1, 'javascript', 'javascript', 2, 'javascript', '2021-01-22 16:52:31', 'admin', NULL, NULL);
+INSERT INTO `article_types` VALUES (4, 1, 'test', 'ttt', 3, 'ffff', '2021-01-23 09:33:16', 'admin', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for articles
@@ -57,12 +59,16 @@ CREATE TABLE `articles`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of articles
 -- ----------------------------
-INSERT INTO `articles` VALUES (1, 1, '技术', '这是技术', '技术', 0, '<h1 class=\"ql-align-center\">这是技术</h1>', '2021-01-08 12:11:49', 'admin', '2021-01-19 18:35:04', 'admin');
+INSERT INTO `articles` VALUES (2, 1, 'docker安装好mysql', 'docker安装好mysql，Navicat连接报2059错误，解决方法', 'linux', 0, '# docker安装好mysql，Navicat连接报2059错误，解决方法\n\ndocker成功安装了mysql，也正常启动了。\n\n启动命名如下：\n\n> docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql\n\n用docker ps -a 也可以查到容器中mysql也在运行中，\n\n但是在本地用Navicat登录的时候，发现报错了。报错信息\n\n连接Docker启动的mysql出现：**ERROR 2059 (HY000): Authentication plugin \'caching_sha2_password\' cannot be loaded**\n\n解决方案：\n1.进入mysql容器\n\n> docker exec -it mysql /bin/bash\n\n2.进入mysql\n\n> mysql -uroot -p\n\n3.修改密码\n\n> ALTER USER \'root\'@\'%\' IDENTIFIED WITH mysql_native_password BY \'123456\';\n\n修改好了之后，再用Navicat登录就可以了。', '2021-01-22 15:39:16', 'admin', '2021-01-23 11:29:48', 'admin');
+INSERT INTO `articles` VALUES (3, 1, 'centos安装配置', 'centos安装配置', 'linux', 0, '# centos安装配置\n\n## 安装docker\n\n**设置仓库**\n\n安装所需的软件包。yum-utils 提供了 yum-config-manager ，并且 device mapper 存储驱动程序需要 device-mapper-persistent-data 和 lvm2。\n\n> sudo yum install -y yum-utils \\\n> device-mapper-persistent-data \\\n> lvm2\n\n使用以下命令来设置稳定的仓库。(清华大学源)\n\n> sudo yum-config-manager \\\n>     --add-repo \\\n>     http:**//**mirrors.aliyun.com**/**docker-ce**/**linux**/**centos**/**docker-ce.repo\n\n安装最新版本的 Docker Engine-Community 和 containerd，或者转到下一步安装特定版本：\n\n> sudo yum install docker-ce docker-ce-cli containerd.io\n\n#### 启动 Docker。\n\n> sudo systemctl start docker\n\n#### 开机自启动docker\n\n> su root   #切换用户\n>\n> systemctl enable docker   #开机自启动docker\n>\n> systemctl start docker   #启动docker\n>\n> systemctl restart docker  #重启docker\n\n### Ubuntu16.04+、Debian8+、CentOS7\n\n对于使用 systemd 的系统，请在 /etc/docker/daemon.conf中写入如下内容（如果文件不存在请新建该文件）：\n\n> {\"registry-mirrors\":[\"https://reg-mirror.qiniu.com/\"]}\n\n之后重新启动服务：\n\n> sudo systemctl daemon-reload\n>\n> sudo systemctl restart docker\n\n## Docker Compose 安装\n\n运行以下命令以下载 Docker Compose 的当前稳定版本：\n\n> sudo curl -L \"https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose\n\n要安装其他版本的 Compose，请替换 1.24.1。\n\n将可执行权限应用于二进制文件：\n\n> sudo chmod +x /usr/local/bin/docker-compose\n\n创建软链：\n\n> sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose\n\n测试是否安装成功：\n\n> docker-compose --version\n\n## Docker 安装 MySQL\n\nhttps://www.runoob.com/docker/docker-install-mysql.html\n\n\n\n', '2021-01-22 16:20:09', 'admin', '2021-01-23 11:29:24', 'admin');
+INSERT INTO `articles` VALUES (4, 1, '安装DOClever', '安装DOClever', 'linux', 0, '# 安装DOClever\n\n> mkdir DOClever\n>\n> cd DOClever\n>\n> vim docker-compose.yml\n\ndocker-compose.yml配置：\n\n```\nversion: \"2\"\nservices:\n  DOClever:\n    image: lw96/doclever\n    restart: always\n    container_name: \"DOClever\"\n    ports:\n    - 10000:10000\n    volumes:\n    - ./file:/root/DOClever/data/file\n    - ./img:/root/DOClever/data/img\n    - ./tmp:/root/DOClever/data/tmp\n    environment:\n    - DB_HOST=mongodb://mongo:27017/DOClever\n    - PORT=10000\n    links:\n    - mongo:mongo\n\n  mongo:\n    image: mongo:latest\n    restart: always\n    container_name: \"mongodb\"\n    volumes:\n    - /my/own/datadir:/data/db\n```\n\n启动容器\n\n> docker-compose up -d\n\n访问\n\nhttp://你的ip:10000/\n\n管理员账号：\n\n> DOClever: DOClerve\n\n```\n- /my/own/datadir:/data/db\n```', '2021-01-23 11:30:04', 'admin', NULL, NULL);
+INSERT INTO `articles` VALUES (5, 1, '测试', '安装GitLab', 'linux', 0, '# 测试\n\n```\ndocker pull gitlab/gitlab-ce\n```\n\n![6511.jpg_wh860.jpg](/uploads/1/CHP_1611717159393_6511.jpg_wh860.jpg)\n \n\n## 查看镜像：\n\n```\ndocker images\n```\n\n \n\n## 运行镜像：\n\n```\ndocker run \\\n -itd  \\\n -p 9980:80 \\\n -p 9922:22 \\\n -v /usr/local/gitlab/etc:/etc/gitlab  \\\n -v /usr/local/gitlab/log:/var/log/gitlab \\\n -v /usr/local/gitlab/opt:/var/opt/gitlab \\\n --restart always \\\n --privileged=true \\\n --name gitlab \\\n gitlab/gitlab-ce\n```\n\n\n- `-d：后台运行`\n- `-p：将容器内部端口向外映射`\n- `--name：命名容器名称`\n- `-v：将容器内数据文件夹或者日志、配置等文件夹挂载到宿主机指定目录`\n\n## 查看容器：\n\n```\ndocker ps\n```\n\n\n \n\n 说明正在启动中。。。\n\n## 查看启动日志：\n\n```\ndocker logs -f gitlab\n```\n\n日志会一直刷，并且此时机器内存不断变大，cpu飙高，等一会，cpu下来之后，说明启动完成（过程几十秒，不同机器速度不一样，SSD的会更快）。\n\n## 再次查看容器：\n\n![c_1318555841_1.jpg](/uploads/1/CHP_1611717190776_c_1318555841_1.jpg)\n\n \n\n说明此时启动成功。\n\n## 浏览器访问：\n\n浏览器输入ip:9980,(9980为刚才启动容器时的映射端口)：\n\n首次进入需要自己设置新的密码，默认用户名为root，登陆后界面：\n \n\n \n\n至此，gitlab搭建完毕，可以在gitlab里面创建项目，也可以使用git工具pull，push项目了。\n\n\n\n\n\n\n\n\n\n\n\n', '2021-01-23 11:30:24', 'admin', '2021-01-27 11:13:17', 'admin');
+INSERT INTO `articles` VALUES (6, 1, '在docker 运行node项目', '在docker 运行node项目', 'javascript', 0, '# 在docker 运行node项目\n\n拉取node镜像\n\n```bash\n# 最新版\ndocker pull node:latest\n# 固定版\ndocker pull node:12.13.0\n```\n\n运行镜像并复制当前路径项目到容器/home/www里面\n\n```bash\ndocker run -itd -p 7001:7001 --name node node:12.13.0 && docker cp . node:/home/www/\n```\n\n进入容器\n\n```bash\ndocker exec -it node bash\n// 进入项目\ncd /home/www/cms-api\nnpm install\n// 安装配置其他环境之后，如mysql，redis\nnpm run dev\n```\n\n', '2021-01-23 11:30:45', 'admin', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for departments
@@ -139,7 +145,7 @@ CREATE TABLE `dict_types`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dict_types
@@ -149,6 +155,28 @@ INSERT INTO `dict_types` VALUES (2, '状态数据', 'sys_normal_disable', '1', '
 INSERT INTO `dict_types` VALUES (3, '性别', 'sys_user_sex', '1', '性别', '2020-11-25 15:49:13', 'admin', '2021-01-05 15:06:49', 'admin');
 INSERT INTO `dict_types` VALUES (4, '公告类型', 'sys_notice_type', '1', '公告类型', '2021-01-05 13:47:27', 'admin', '2021-01-05 15:06:41', 'admin');
 INSERT INTO `dict_types` VALUES (5, '公告状态', 'sys_notice_status', '1', '公告状态', '2021-01-05 13:48:00', 'admin', '2021-01-05 15:06:37', 'admin');
+
+-- ----------------------------
+-- Table structure for friendly_links
+-- ----------------------------
+DROP TABLE IF EXISTS `friendly_links`;
+CREATE TABLE `friendly_links`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL COMMENT '用户id',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称',
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '链接',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `createdAt` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `createdBy` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建者',
+  `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `updatedBy` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新者',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of friendly_links
+-- ----------------------------
+INSERT INTO `friendly_links` VALUES (3, 1, 'baidu', 'https://www.baidu.com/?tn=78000241_22_hao_pg', 'baidu', '2021-01-23 13:35:18', 'admin', '2021-01-23 14:08:40', 'admin');
 
 -- ----------------------------
 -- Table structure for menus
@@ -175,7 +203,7 @@ CREATE TABLE `menus`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of menus
@@ -188,37 +216,46 @@ INSERT INTO `menus` VALUES (5, 2, '菜单管理', 'menu', 'Menu', 'Menu', '1', '
 INSERT INTO `menus` VALUES (6, 2, '部门管理', 'dept', 'Dept', 'Dept', '1', 'C', '1', 4, '1', '', '#', '0', NULL, '2020-11-25 15:49:13', 'admin', '2021-01-05 15:11:06', 'admin');
 INSERT INTO `menus` VALUES (7, 2, '字典管理', 'dict', 'Dict', 'Dict', '1', 'C', '1', 6, '1', '', '#', '0', NULL, '2020-11-25 15:49:13', 'admin', '2021-01-05 15:11:11', 'admin');
 INSERT INTO `menus` VALUES (8, 0, '博客管理', '/article', 'Layout', 'Layout', '1', 'M', '1', 10, '1', NULL, 'article', '0', NULL, '2021-01-04 15:52:39', 'admin', '2021-01-06 14:57:16', 'admin');
-INSERT INTO `menus` VALUES (9, 8, '文章列表', 'articleList', 'ArticleList', 'ArticleList', '1', 'C', '1', 1, '1', NULL, '#', '0', NULL, '2021-01-04 16:09:36', 'admin', '2021-01-05 15:10:38', 'admin');
-INSERT INTO `menus` VALUES (13, 3, '查询', NULL, NULL, NULL, '1', 'F', '0', 1, '0', 'system:user:list', '#', '0', NULL, '2021-01-04 16:46:28', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (14, 3, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '0', 'system:user:add', '#', '0', NULL, '2021-01-04 16:47:31', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (15, 3, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '0', 'system:user:update', '#', '0', NULL, '2021-01-04 16:47:51', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (16, 3, '删除', NULL, NULL, NULL, '1', 'F', '0', 4, '0', 'system:user:delete', '#', '0', NULL, '2021-01-04 16:48:37', 'admin', '2021-01-04 16:49:35', 'admin');
-INSERT INTO `menus` VALUES (17, 4, '查询', NULL, NULL, NULL, '1', 'F', '0', 1, '0', 'system:role:list', '#', '0', NULL, '2021-01-04 18:05:57', 'admin', '2021-01-04 18:06:15', 'admin');
-INSERT INTO `menus` VALUES (18, 4, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '0', 'system:role:add', '#', '0', NULL, '2021-01-04 18:06:38', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (19, 4, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '0', 'system:role:update', '#', '0', NULL, '2021-01-04 18:07:04', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (20, 4, '删除', NULL, NULL, NULL, '1', 'F', '0', 4, '0', 'system:role:delete', '#', '0', NULL, '2021-01-04 18:07:21', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (21, 5, '查询', NULL, NULL, NULL, '1', 'F', '0', 1, '0', 'system:menu:list', '#', '0', NULL, '2021-01-04 18:08:20', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (22, 5, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '0', 'system:menu:add', '#', '0', NULL, '2021-01-04 18:08:37', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (23, 5, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '0', 'system:menu:update', '#', '0', NULL, '2021-01-04 18:08:55', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (24, 5, '删除', NULL, NULL, NULL, '1', 'F', '0', 4, '0', 'system:menu:delete', '#', '0', NULL, '2021-01-04 18:09:12', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (25, 6, '查询', NULL, NULL, NULL, '1', 'F', '0', 1, '0', 'system:dept:list', '#', '0', NULL, '2021-01-04 18:09:31', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (26, 6, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '0', 'system:dept:add', '#', '0', NULL, '2021-01-04 18:10:12', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (27, 6, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '0', 'system:dept:update', '#', '0', NULL, '2021-01-04 18:10:27', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (28, 6, '删除', NULL, NULL, NULL, '1', 'F', '0', 4, '0', 'system:dept:delete', '#', '0', NULL, '2021-01-04 18:10:42', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (29, 7, '查询字典类型', NULL, NULL, NULL, '1', 'F', '0', 1, '0', 'system:dictType:list', '#', '0', NULL, '2021-01-04 18:14:06', 'admin', '2021-01-04 18:14:35', 'admin');
-INSERT INTO `menus` VALUES (30, 7, '新增字典类型', NULL, NULL, NULL, '1', 'F', '0', 2, '0', 'system:dictType:add', '#', '0', NULL, '2021-01-04 18:14:52', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (31, 7, '修改字典类型', NULL, NULL, NULL, '1', 'F', '0', 3, '0', 'system:dictType:update', '#', '0', NULL, '2021-01-04 18:15:34', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (32, 7, '删除字典类型', NULL, NULL, NULL, '1', 'F', '0', 4, '0', 'system:dictType:delete', '#', '0', NULL, '2021-01-04 18:15:49', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (33, 7, '查询字典数据', NULL, NULL, NULL, '1', 'F', '0', 5, '0', 'system:dictData:list', '#', '0', NULL, '2021-01-04 18:16:33', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (34, 7, '新增字典数据', NULL, NULL, NULL, '1', 'F', '0', 6, '0', 'system:dictData:add', '#', '0', NULL, '2021-01-04 18:16:52', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (35, 7, '修改字典数据', NULL, NULL, NULL, '1', 'F', '0', 7, '0', 'system:dictData:update', '#', '0', NULL, '2021-01-04 18:17:10', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (36, 7, '删除字典数据', NULL, NULL, NULL, '1', 'F', '0', 8, '0', 'system:dictData:delete', '#', '0', NULL, '2021-01-04 18:17:24', 'admin', NULL, NULL);
+INSERT INTO `menus` VALUES (9, 8, '文章列表', 'articleList', 'ArticleList', 'ArticleList', '1', 'C', '1', 2, '1', NULL, '#', '0', NULL, '2021-01-04 16:09:36', 'admin', '2021-01-25 14:07:08', 'admin');
+INSERT INTO `menus` VALUES (13, 3, '查询', NULL, NULL, NULL, '1', 'F', '0', 1, '1', 'system:user:list', '#', '0', NULL, '2021-01-04 16:46:28', 'admin', '2021-01-23 09:58:27', 'admin');
+INSERT INTO `menus` VALUES (14, 3, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '1', 'system:user:add', '#', '0', NULL, '2021-01-04 16:47:31', 'admin', '2021-01-23 09:58:36', 'admin');
+INSERT INTO `menus` VALUES (15, 3, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '1', 'system:user:update', '#', '0', NULL, '2021-01-04 16:47:51', 'admin', '2021-01-23 09:58:40', 'admin');
+INSERT INTO `menus` VALUES (16, 3, '删除', NULL, NULL, NULL, '1', 'F', '0', 4, '1', 'system:user:delete', '#', '0', NULL, '2021-01-04 16:48:37', 'admin', '2021-01-23 09:58:48', 'admin');
+INSERT INTO `menus` VALUES (17, 4, '查询', NULL, NULL, NULL, '1', 'F', '0', 1, '1', 'system:role:list', '#', '0', NULL, '2021-01-04 18:05:57', 'admin', '2021-01-23 09:58:54', 'admin');
+INSERT INTO `menus` VALUES (18, 4, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '1', 'system:role:add', '#', '0', NULL, '2021-01-04 18:06:38', 'admin', '2021-01-23 09:58:58', 'admin');
+INSERT INTO `menus` VALUES (19, 4, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '1', 'system:role:update', '#', '0', NULL, '2021-01-04 18:07:04', 'admin', '2021-01-23 09:59:01', 'admin');
+INSERT INTO `menus` VALUES (20, 4, '删除', NULL, NULL, NULL, '1', 'F', '0', 4, '1', 'system:role:delete', '#', '0', NULL, '2021-01-04 18:07:21', 'admin', '2021-01-23 09:59:05', 'admin');
+INSERT INTO `menus` VALUES (21, 5, '查询', NULL, NULL, NULL, '1', 'F', '0', 1, '1', 'system:menu:list', '#', '0', NULL, '2021-01-04 18:08:20', 'admin', '2021-01-23 09:59:30', 'admin');
+INSERT INTO `menus` VALUES (22, 5, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '1', 'system:menu:add', '#', '0', NULL, '2021-01-04 18:08:37', 'admin', '2021-01-23 09:59:33', 'admin');
+INSERT INTO `menus` VALUES (23, 5, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '1', 'system:menu:update', '#', '0', NULL, '2021-01-04 18:08:55', 'admin', '2021-01-23 09:59:37', 'admin');
+INSERT INTO `menus` VALUES (24, 5, '删除', NULL, NULL, NULL, '1', 'F', '0', 4, '1', 'system:menu:delete', '#', '0', NULL, '2021-01-04 18:09:12', 'admin', '2021-01-23 09:59:40', 'admin');
+INSERT INTO `menus` VALUES (25, 6, '查询', NULL, NULL, NULL, '1', 'F', '0', 1, '1', 'system:dept:list', '#', '0', NULL, '2021-01-04 18:09:31', 'admin', '2021-01-23 09:59:46', 'admin');
+INSERT INTO `menus` VALUES (26, 6, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '1', 'system:dept:add', '#', '0', NULL, '2021-01-04 18:10:12', 'admin', '2021-01-23 09:59:49', 'admin');
+INSERT INTO `menus` VALUES (27, 6, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '1', 'system:dept:update', '#', '0', NULL, '2021-01-04 18:10:27', 'admin', '2021-01-23 09:59:53', 'admin');
+INSERT INTO `menus` VALUES (28, 6, '删除', NULL, NULL, NULL, '1', 'F', '0', 4, '1', 'system:dept:delete', '#', '0', NULL, '2021-01-04 18:10:42', 'admin', '2021-01-23 09:59:58', 'admin');
+INSERT INTO `menus` VALUES (29, 7, '查询字典类型', NULL, NULL, NULL, '1', 'F', '0', 1, '1', 'system:dictType:list', '#', '0', NULL, '2021-01-04 18:14:06', 'admin', '2021-01-23 10:00:04', 'admin');
+INSERT INTO `menus` VALUES (30, 7, '新增字典类型', NULL, NULL, NULL, '1', 'F', '0', 2, '1', 'system:dictType:add', '#', '0', NULL, '2021-01-04 18:14:52', 'admin', '2021-01-23 10:00:07', 'admin');
+INSERT INTO `menus` VALUES (31, 7, '修改字典类型', NULL, NULL, NULL, '1', 'F', '0', 3, '1', 'system:dictType:update', '#', '0', NULL, '2021-01-04 18:15:34', 'admin', '2021-01-23 10:00:11', 'admin');
+INSERT INTO `menus` VALUES (32, 7, '删除字典类型', NULL, NULL, NULL, '1', 'F', '0', 4, '1', 'system:dictType:delete', '#', '0', NULL, '2021-01-04 18:15:49', 'admin', '2021-01-23 10:00:14', 'admin');
+INSERT INTO `menus` VALUES (33, 7, '查询字典数据', NULL, NULL, NULL, '1', 'F', '0', 5, '1', 'system:dictData:list', '#', '0', NULL, '2021-01-04 18:16:33', 'admin', '2021-01-23 10:00:20', 'admin');
+INSERT INTO `menus` VALUES (34, 7, '新增字典数据', NULL, NULL, NULL, '1', 'F', '0', 6, '1', 'system:dictData:add', '#', '0', NULL, '2021-01-04 18:16:52', 'admin', '2021-01-23 10:00:24', 'admin');
+INSERT INTO `menus` VALUES (35, 7, '修改字典数据', NULL, NULL, NULL, '1', 'F', '0', 7, '1', 'system:dictData:update', '#', '0', NULL, '2021-01-04 18:17:10', 'admin', '2021-01-23 10:00:27', 'admin');
+INSERT INTO `menus` VALUES (36, 7, '删除字典数据', NULL, NULL, NULL, '1', 'F', '0', 8, '1', 'system:dictData:delete', '#', '0', NULL, '2021-01-04 18:17:24', 'admin', '2021-01-23 10:00:34', 'admin');
 INSERT INTO `menus` VALUES (37, 2, '通知公告', 'notice', 'Notice', 'Notice', '1', 'C', '1', 10, '1', NULL, '#', '0', NULL, '2021-01-05 13:43:26', 'admin', '2021-01-05 15:11:15', 'admin');
-INSERT INTO `menus` VALUES (38, 37, '查询', NULL, NULL, NULL, '1', 'F', '0', 1, '0', 'system:notice:list', '#', '0', NULL, '2021-01-05 14:06:12', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (39, 37, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '0', 'system:notice:add', '#', '0', NULL, '2021-01-05 14:06:51', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (40, 37, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '0', 'system:notice:update', '#', '0', NULL, '2021-01-05 14:07:10', 'admin', NULL, NULL);
-INSERT INTO `menus` VALUES (41, 37, '删除', NULL, NULL, NULL, '1', 'F', '0', 4, '0', 'system:notice:delete', '#', '0', NULL, '2021-01-05 14:07:28', 'admin', NULL, NULL);
+INSERT INTO `menus` VALUES (38, 37, '查询', NULL, NULL, NULL, '1', 'F', '0', 1, '1', 'system:notice:list', '#', '0', NULL, '2021-01-05 14:06:12', 'admin', '2021-01-23 10:00:40', 'admin');
+INSERT INTO `menus` VALUES (39, 37, '新增', NULL, NULL, NULL, '1', 'F', '0', 2, '1', 'system:notice:add', '#', '0', NULL, '2021-01-05 14:06:51', 'admin', '2021-01-23 10:00:43', 'admin');
+INSERT INTO `menus` VALUES (40, 37, '修改', NULL, NULL, NULL, '1', 'F', '0', 3, '1', 'system:notice:update', '#', '0', NULL, '2021-01-05 14:07:10', 'admin', '2021-01-23 10:00:47', 'admin');
+INSERT INTO `menus` VALUES (41, 37, '删除', NULL, NULL, NULL, '1', 'F', '0', 4, '1', 'system:notice:delete', '#', '0', NULL, '2021-01-05 14:07:28', 'admin', '2021-01-23 10:00:51', 'admin');
 INSERT INTO `menus` VALUES (42, 8, '文章类型', 'articleType', 'ArticleType', 'ArticleType', '1', 'C', '1', 3, '1', NULL, '#', '0', NULL, '2021-01-06 15:05:31', 'admin', NULL, NULL);
+INSERT INTO `menus` VALUES (43, 9, '新增', NULL, NULL, NULL, '1', 'F', '1', 2, '1', 'blog:article:add', '#', '0', NULL, '2021-01-23 10:04:07', 'test', '2021-01-23 10:08:56', 'test');
+INSERT INTO `menus` VALUES (44, 9, '修改', NULL, NULL, NULL, '1', 'F', '1', 3, '1', 'blog:article:update', '#', '0', NULL, '2021-01-23 10:07:04', 'test', '2021-01-23 10:09:03', 'test');
+INSERT INTO `menus` VALUES (45, 9, '查询', NULL, NULL, NULL, '1', 'F', '1', 1, '1', 'blog:article:list', '#', '0', NULL, '2021-01-23 10:07:34', 'test', '2021-01-23 10:08:50', 'test');
+INSERT INTO `menus` VALUES (46, 9, '删除', NULL, NULL, NULL, '1', 'F', '1', 4, '1', 'blog:article:delete', '#', '0', NULL, '2021-01-23 10:08:13', 'test', '2021-01-23 10:09:11', 'test');
+INSERT INTO `menus` VALUES (47, 42, '查询', NULL, NULL, NULL, '1', 'F', '1', 1, '1', 'blog:articleType:list', '#', '0', NULL, '2021-01-23 10:09:33', 'test', NULL, NULL);
+INSERT INTO `menus` VALUES (48, 42, '新增', NULL, NULL, NULL, '1', 'F', '1', 2, '1', 'blog:articleType:add', '#', '0', NULL, '2021-01-23 10:09:46', 'test', NULL, NULL);
+INSERT INTO `menus` VALUES (49, 42, '修改', NULL, NULL, NULL, '1', 'F', '1', 3, '1', 'blog:articleType:update', '#', '0', NULL, '2021-01-23 10:10:00', 'test', NULL, NULL);
+INSERT INTO `menus` VALUES (50, 42, '删除', NULL, NULL, NULL, '1', 'F', '1', 4, '1', 'blog:articleType:delete', '#', '0', NULL, '2021-01-23 10:10:16', 'test', NULL, NULL);
+INSERT INTO `menus` VALUES (51, 8, '友情链接', 'friendlyLink', 'FriendlyLink', 'FriendlyLink', '1', 'C', '1', 10, '1', NULL, '#', '0', NULL, '2021-01-23 10:21:00', 'admin', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for notices
@@ -247,50 +284,109 @@ CREATE TABLE `role_menus`  (
   `roleId` int(11) NOT NULL COMMENT '角色roleId',
   `menuId` int(11) NOT NULL COMMENT '菜单menuId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 47 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 603 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role_menus
 -- ----------------------------
-INSERT INTO `role_menus` VALUES (8, 1, 1);
-INSERT INTO `role_menus` VALUES (9, 1, 8);
-INSERT INTO `role_menus` VALUES (10, 1, 9);
-INSERT INTO `role_menus` VALUES (11, 1, 42);
-INSERT INTO `role_menus` VALUES (12, 1, 2);
-INSERT INTO `role_menus` VALUES (13, 1, 3);
-INSERT INTO `role_menus` VALUES (14, 1, 13);
-INSERT INTO `role_menus` VALUES (15, 1, 14);
-INSERT INTO `role_menus` VALUES (16, 1, 15);
-INSERT INTO `role_menus` VALUES (17, 1, 16);
-INSERT INTO `role_menus` VALUES (18, 1, 4);
-INSERT INTO `role_menus` VALUES (19, 1, 17);
-INSERT INTO `role_menus` VALUES (20, 1, 18);
-INSERT INTO `role_menus` VALUES (21, 1, 19);
-INSERT INTO `role_menus` VALUES (22, 1, 20);
-INSERT INTO `role_menus` VALUES (23, 1, 5);
-INSERT INTO `role_menus` VALUES (24, 1, 21);
-INSERT INTO `role_menus` VALUES (25, 1, 22);
-INSERT INTO `role_menus` VALUES (26, 1, 23);
-INSERT INTO `role_menus` VALUES (27, 1, 24);
-INSERT INTO `role_menus` VALUES (28, 1, 6);
-INSERT INTO `role_menus` VALUES (29, 1, 25);
-INSERT INTO `role_menus` VALUES (30, 1, 26);
-INSERT INTO `role_menus` VALUES (31, 1, 27);
-INSERT INTO `role_menus` VALUES (32, 1, 28);
-INSERT INTO `role_menus` VALUES (33, 1, 7);
-INSERT INTO `role_menus` VALUES (34, 1, 29);
-INSERT INTO `role_menus` VALUES (35, 1, 30);
-INSERT INTO `role_menus` VALUES (36, 1, 31);
-INSERT INTO `role_menus` VALUES (37, 1, 32);
-INSERT INTO `role_menus` VALUES (38, 1, 33);
-INSERT INTO `role_menus` VALUES (39, 1, 34);
-INSERT INTO `role_menus` VALUES (40, 1, 35);
-INSERT INTO `role_menus` VALUES (41, 1, 36);
-INSERT INTO `role_menus` VALUES (42, 1, 37);
-INSERT INTO `role_menus` VALUES (43, 1, 38);
-INSERT INTO `role_menus` VALUES (44, 1, 39);
-INSERT INTO `role_menus` VALUES (45, 1, 40);
-INSERT INTO `role_menus` VALUES (46, 1, 41);
+INSERT INTO `role_menus` VALUES (505, 1, 1);
+INSERT INTO `role_menus` VALUES (506, 1, 8);
+INSERT INTO `role_menus` VALUES (507, 1, 52);
+INSERT INTO `role_menus` VALUES (508, 1, 9);
+INSERT INTO `role_menus` VALUES (509, 1, 45);
+INSERT INTO `role_menus` VALUES (510, 1, 43);
+INSERT INTO `role_menus` VALUES (511, 1, 44);
+INSERT INTO `role_menus` VALUES (512, 1, 46);
+INSERT INTO `role_menus` VALUES (513, 1, 42);
+INSERT INTO `role_menus` VALUES (514, 1, 47);
+INSERT INTO `role_menus` VALUES (515, 1, 48);
+INSERT INTO `role_menus` VALUES (516, 1, 49);
+INSERT INTO `role_menus` VALUES (517, 1, 50);
+INSERT INTO `role_menus` VALUES (518, 1, 51);
+INSERT INTO `role_menus` VALUES (519, 1, 2);
+INSERT INTO `role_menus` VALUES (520, 1, 3);
+INSERT INTO `role_menus` VALUES (521, 1, 13);
+INSERT INTO `role_menus` VALUES (522, 1, 14);
+INSERT INTO `role_menus` VALUES (523, 1, 15);
+INSERT INTO `role_menus` VALUES (524, 1, 16);
+INSERT INTO `role_menus` VALUES (525, 1, 4);
+INSERT INTO `role_menus` VALUES (526, 1, 17);
+INSERT INTO `role_menus` VALUES (527, 1, 18);
+INSERT INTO `role_menus` VALUES (528, 1, 19);
+INSERT INTO `role_menus` VALUES (529, 1, 20);
+INSERT INTO `role_menus` VALUES (530, 1, 5);
+INSERT INTO `role_menus` VALUES (531, 1, 21);
+INSERT INTO `role_menus` VALUES (532, 1, 22);
+INSERT INTO `role_menus` VALUES (533, 1, 23);
+INSERT INTO `role_menus` VALUES (534, 1, 24);
+INSERT INTO `role_menus` VALUES (535, 1, 6);
+INSERT INTO `role_menus` VALUES (536, 1, 25);
+INSERT INTO `role_menus` VALUES (537, 1, 26);
+INSERT INTO `role_menus` VALUES (538, 1, 27);
+INSERT INTO `role_menus` VALUES (539, 1, 28);
+INSERT INTO `role_menus` VALUES (540, 1, 7);
+INSERT INTO `role_menus` VALUES (541, 1, 29);
+INSERT INTO `role_menus` VALUES (542, 1, 30);
+INSERT INTO `role_menus` VALUES (543, 1, 31);
+INSERT INTO `role_menus` VALUES (544, 1, 32);
+INSERT INTO `role_menus` VALUES (545, 1, 33);
+INSERT INTO `role_menus` VALUES (546, 1, 34);
+INSERT INTO `role_menus` VALUES (547, 1, 35);
+INSERT INTO `role_menus` VALUES (548, 1, 36);
+INSERT INTO `role_menus` VALUES (549, 1, 37);
+INSERT INTO `role_menus` VALUES (550, 1, 38);
+INSERT INTO `role_menus` VALUES (551, 1, 39);
+INSERT INTO `role_menus` VALUES (552, 1, 40);
+INSERT INTO `role_menus` VALUES (553, 1, 41);
+INSERT INTO `role_menus` VALUES (554, 2, 1);
+INSERT INTO `role_menus` VALUES (555, 2, 8);
+INSERT INTO `role_menus` VALUES (556, 2, 52);
+INSERT INTO `role_menus` VALUES (557, 2, 9);
+INSERT INTO `role_menus` VALUES (558, 2, 45);
+INSERT INTO `role_menus` VALUES (559, 2, 43);
+INSERT INTO `role_menus` VALUES (560, 2, 44);
+INSERT INTO `role_menus` VALUES (561, 2, 46);
+INSERT INTO `role_menus` VALUES (562, 2, 42);
+INSERT INTO `role_menus` VALUES (563, 2, 47);
+INSERT INTO `role_menus` VALUES (564, 2, 48);
+INSERT INTO `role_menus` VALUES (565, 2, 49);
+INSERT INTO `role_menus` VALUES (566, 2, 50);
+INSERT INTO `role_menus` VALUES (567, 2, 51);
+INSERT INTO `role_menus` VALUES (568, 2, 2);
+INSERT INTO `role_menus` VALUES (569, 2, 3);
+INSERT INTO `role_menus` VALUES (570, 2, 13);
+INSERT INTO `role_menus` VALUES (571, 2, 14);
+INSERT INTO `role_menus` VALUES (572, 2, 15);
+INSERT INTO `role_menus` VALUES (573, 2, 16);
+INSERT INTO `role_menus` VALUES (574, 2, 4);
+INSERT INTO `role_menus` VALUES (575, 2, 17);
+INSERT INTO `role_menus` VALUES (576, 2, 18);
+INSERT INTO `role_menus` VALUES (577, 2, 19);
+INSERT INTO `role_menus` VALUES (578, 2, 20);
+INSERT INTO `role_menus` VALUES (579, 2, 5);
+INSERT INTO `role_menus` VALUES (580, 2, 21);
+INSERT INTO `role_menus` VALUES (581, 2, 22);
+INSERT INTO `role_menus` VALUES (582, 2, 23);
+INSERT INTO `role_menus` VALUES (583, 2, 24);
+INSERT INTO `role_menus` VALUES (584, 2, 6);
+INSERT INTO `role_menus` VALUES (585, 2, 25);
+INSERT INTO `role_menus` VALUES (586, 2, 26);
+INSERT INTO `role_menus` VALUES (587, 2, 27);
+INSERT INTO `role_menus` VALUES (588, 2, 28);
+INSERT INTO `role_menus` VALUES (589, 2, 7);
+INSERT INTO `role_menus` VALUES (590, 2, 29);
+INSERT INTO `role_menus` VALUES (591, 2, 30);
+INSERT INTO `role_menus` VALUES (592, 2, 31);
+INSERT INTO `role_menus` VALUES (593, 2, 32);
+INSERT INTO `role_menus` VALUES (594, 2, 33);
+INSERT INTO `role_menus` VALUES (595, 2, 34);
+INSERT INTO `role_menus` VALUES (596, 2, 35);
+INSERT INTO `role_menus` VALUES (597, 2, 36);
+INSERT INTO `role_menus` VALUES (598, 2, 37);
+INSERT INTO `role_menus` VALUES (599, 2, 38);
+INSERT INTO `role_menus` VALUES (600, 2, 39);
+INSERT INTO `role_menus` VALUES (601, 2, 40);
+INSERT INTO `role_menus` VALUES (602, 2, 41);
 
 -- ----------------------------
 -- Table structure for roles
@@ -310,12 +406,13 @@ CREATE TABLE `roles`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of roles
 -- ----------------------------
-INSERT INTO `roles` VALUES (1, '超级管理员', 'admin', 1, '1', '1', '0', NULL, '2021-01-08 12:04:02', 'admin', '2021-01-08 12:07:58', 'admin');
+INSERT INTO `roles` VALUES (1, '超级管理员', 'admin', 1, '1', '1', '0', NULL, '2021-01-08 12:04:02', 'admin', '2021-01-25 14:10:45', 'admin');
+INSERT INTO `roles` VALUES (2, '测试', 'test', 2, '1', '1', '0', NULL, '2021-01-23 09:40:29', 'admin', '2021-01-25 14:10:49', 'admin');
 
 -- ----------------------------
 -- Table structure for sequelizemeta
@@ -332,6 +429,7 @@ CREATE TABLE `sequelizemeta`  (
 -- ----------------------------
 INSERT INTO `sequelizemeta` VALUES ('20200831061523-create-article-type.js');
 INSERT INTO `sequelizemeta` VALUES ('20200831061523-create-articles.js');
+INSERT INTO `sequelizemeta` VALUES ('20200831061523-create-friendlyLink.js');
 INSERT INTO `sequelizemeta` VALUES ('20200831061523-create-notices.js');
 INSERT INTO `sequelizemeta` VALUES ('20200831061523-create-roles.js');
 INSERT INTO `sequelizemeta` VALUES ('20200831061618-create-departments.js');
@@ -351,12 +449,13 @@ CREATE TABLE `user_roles`  (
   `userId` int(11) NOT NULL COMMENT '用户id',
   `roleId` int(11) NOT NULL COMMENT '角色id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_roles
 -- ----------------------------
 INSERT INTO `user_roles` VALUES (1, 1, 1);
+INSERT INTO `user_roles` VALUES (3, 2, 2);
 
 -- ----------------------------
 -- Table structure for users
@@ -381,11 +480,12 @@ CREATE TABLE `users`  (
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `userName`(`userName`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES (1, 1, 'admin', 'admin', '1', '$2a$10$DASIjFwPy4yRRcPnWtx0/OT.t9M6ZF8zt963vnPgDdhiCtjEuSqee', NULL, NULL, NULL, '0', '1', '', '2021-01-08 12:04:02', 'admin', NULL, NULL);
+INSERT INTO `users` VALUES (2, 2, 'test', 'test', '1', '$2a$10$eV0xA14rp33w5Ai0HEzn..7eG6GY7Bq9iFvRRqVivZ50CVYXUMXXK', NULL, NULL, NULL, '0', '1', NULL, '2021-01-23 09:36:27', 'admin', '2021-01-23 09:40:40', 'admin');
 
 SET FOREIGN_KEY_CHECKS = 1;

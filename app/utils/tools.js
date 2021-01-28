@@ -1,6 +1,8 @@
 
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+const fs = require('fs');
+const path = require('path');
 
 // 校验有 /* 的白名单
 function checkWhiteList(ctx, list) {
@@ -12,6 +14,18 @@ function checkWhiteList(ctx, list) {
     }
   })
   return flag
+}
+
+// 递归创建目录 同步方法
+function mkdirsSync(dirname) {
+  if (fs.existsSync(dirname)) {
+    return true;
+  } else {
+    if (mkdirsSync(path.dirname(dirname, '/'))) {
+      fs.mkdirSync(dirname);
+      return true;
+    }
+  }
 }
 
 /**
@@ -86,5 +100,6 @@ function getDeptWhere (ctx, where = {}) {
 module.exports = {
   checkWhiteList,
   handleTree,
-  getDeptWhere
+  getDeptWhere,
+  mkdirsSync
 }

@@ -2,6 +2,7 @@
 const Controller = require('egg').Controller;
 const fs = require('fs');
 const JWT = require('jsonwebtoken');
+const { mkdirsSync } = require('../../../../utils/tools')
 
 class CommonController extends Controller {  
   
@@ -128,7 +129,7 @@ class CommonController extends Controller {
     }
   }
 
-  // 上传头像
+  // 上传
   async upload () {
     const { ctx } = this
     if (!ctx.request.files.length) {
@@ -137,8 +138,10 @@ class CommonController extends Controller {
     const file = ctx.request.files[0];
     const fileinfo = fs.readFileSync(file.filepath);
     const name = `CHP_${new Date().getTime()}_${file.filename}`;
-    let filePath = `/uploads/${name}`;
-    const target = `app/public/uploads/${name}`;
+    let filePath = `/uploads/${ctx.state.user.id}/${name}`;
+    const target = `app/public/uploads/${ctx.state.user.id}/${name}`;
+    
+    mkdirsSync(`app/public/uploads/${ctx.state.user.id}`); // 递归生成文件夹
     try {
       await fs.writeFileSync(target, fileinfo);
     } catch (error) {
@@ -153,7 +156,7 @@ class CommonController extends Controller {
     }
     ctx.returnBody({
       path: filePath, // 路径
-    }, '上传成功');
+    }, 0);
   }
 }
 

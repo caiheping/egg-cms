@@ -2,17 +2,15 @@
 
 ## 描述
 
-cms-api 为前后端分离的后台管理系统。
+cms-api 为前后端分离的博客管理系统。
 
 ## 技术栈
 
 后端技术栈：egg.js + mysql + sequelize + jwt 等
 
-前端技术栈：vue全家桶 + axios + elementUI 等
+前端技术栈：vue全家桶 + axios + elementUI + markdown编辑器等
 
-前端项目地址（码云）：https://gitee.com/caiheping/vue-cms
-
-前端项目地址（GitHub）：https://github.com/caiheping/vue-cms
+前端项目地址：https://github.com/caiheping/vue-cms
 
 ### 环境
 
@@ -28,7 +26,7 @@ cd egg-cms
 npm install
 ```
 
-然后修改config/config.default.js和database/config.json下自己的数据库用户名和密码
+然后修改config/config.default.js和database/config.json（这个改不改都行）下自己的数据库用户名和密码
 
 创建数据库egg_cms_development
 
@@ -38,14 +36,14 @@ npm install
 
 > npm run dev
 
-浏览器打开 http://127.0.0.1:7001/index.html#/login
+浏览器打开 http://127.0.0.1:7001/web/index.html
 
 admin登录账号：admin，密码： 123456
 普通用户账号密码自己用admin去用户管理创建
 
 ### 项目功能
 - [x] 登录 -- 完成
-- [ ] 首页 -- 待定
+- [x] 首页 -- 去我的博客
 - [x] 文章列表 -- 增删改查
 - [x] 文章类型 -- 增删改查
 - [x] 用户中心 -- 增删改查
@@ -54,6 +52,7 @@ admin登录账号：admin，密码： 123456
 - [x] 部门管理 -- 增删改查
 - [x] 通知公告 -- 增删改查
 - [x] 头像上传 -- 完成
+- [x] 我的博客前端界面（知道地址后无需登录就可以进入）
 
 
 
@@ -79,7 +78,6 @@ cms-api
 |	├─ migrations			// 数据库迁移文件
 |	├─ seeders				// 种子文件
 |	├─ config.json				// sequelize 配置文件
-├─ lib						// 自定义插件
 ├─ logs						// 日志文件
 ├─ run
 ├─ test
@@ -94,26 +92,76 @@ cms-api
 
 **登录页**
 
-![1611052344305](README.assets/1611052344305.png)
+![](http://cdn.caihp.top/egg-cms/other/login.png)
 
 **首页**
 
-![1611052469896](README.assets/1611052469896.png)
+![home](http://cdn.caihp.top/egg-cms/other/home.png)
 
 
 
 **博客管理 > 文章列表**
 
-![1611052529633](README.assets/1611052529633.png)
+![article-list](http://cdn.caihp.top/egg-cms/other/article-list.png)
 
 **博客管理 > 文章类型**
 
-![1611052589345](README.assets/1611052589345.png)
+![article-type](http://cdn.caihp.top/egg-cms/other/article-type.png)
 
 
 
-## 后续
+**博客管理 > 友情链接**
 
-根据后台管理系统的博客模块开发前端个人博客界面，顺便完善首页
+![friendly-link](http://cdn.caihp.top/egg-cms/other/friendly-link.png)
+
+
+
+**系统管理 > 用户管理**
+
+![](http://cdn.caihp.top/egg-cms/other/userManagement.png)
+
+
+
+**系统管理 > 角色管理**
+
+![](http://cdn.caihp.top/egg-cms/other/roleManagement.png)
+
+
+
+**系统管理 > 菜单管理**
+
+![](http://cdn.caihp.top/egg-cms/other/menuManagement.png)
+
+
+
+**系统管理 > 部门管理**
+
+![](http://cdn.caihp.top/egg-cms/other/deptManagement.png)
+
+
+
+**系统管理 > 字典管理**
+
+![](http://cdn.caihp.top/egg-cms/other/dictManagement.png)
+
+
+
+**系统管理 > 通知公告**
+
+![](http://cdn.caihp.top/egg-cms/other/noticeManagement.png)
+
+
+
+**我的博客 > 首页**
+
+![](http://cdn.caihp.top/egg-cms/other/web-home.png)
+
+
+
+**我的博客 > 文章详情**
+
+![](http://cdn.caihp.top/egg-cms/other/web-article-detail.png)
+
+
 
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^

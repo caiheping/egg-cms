@@ -25,7 +25,7 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1605250020379_4355';
   config.public = 'v1' // 版本
-  config.whiteList = ['/', `/api/${config.public}/login`, `/api/${config.public}/logout`, `/api/${config.public}/captcha`, `/api/${config.public}/front/*`] // api 白名单
+  config.whiteList = ['/', `/api/${config.public}/login`, `/api/${config.public}/logout`, `/api/${config.public}/captcha`, `/api/${config.public}/front/*`, '/web/*'] // api 白名单
 
   // file模式上传文件
   config.multipart = {
@@ -42,9 +42,15 @@ module.exports = appInfo => {
 
   // add your middleware config here
   config.middleware = [
+    "gzip",
     'errorHandler', // 全局错误处理
     'jwt'
   ];
+
+  config.gzip = {
+    threshold: 1024, // 小于 1k 的响应体不压缩
+  };
+
   config.jwt = {
     secret: 'egg-api-jwt',
     expiresIn: 60 * 60 * 24 // 1天过期

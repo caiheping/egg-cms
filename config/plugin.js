@@ -16,10 +16,5 @@ module.exports = {
   validatePlus: {
     enable: true,
     package: 'egg-validate-plus',
-  },
-  // 自定义插件
-  info: {
-    enable: true,
-    path: path.join(__dirname, '../lib/plugin/egg-info')
   }
 };
