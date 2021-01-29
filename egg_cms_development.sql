@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 28/01/2021 09:16:21
+ Date: 29/01/2021 14:50:29
 */
 
 SET NAMES utf8mb4;
@@ -86,13 +86,13 @@ CREATE TABLE `departments`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`deptId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of departments
 -- ----------------------------
 INSERT INTO `departments` VALUES (1, 0, '总部', 1, '1', '0', '2021-01-08 12:04:02', 'admin', NULL, NULL);
-INSERT INTO `departments` VALUES (2, 1, '技术部', 1, '1', '0', '2021-01-08 12:04:02', 'admin', NULL, NULL);
+INSERT INTO `departments` VALUES (2, 1, '测试部门', 1, '1', '0', '2021-01-08 12:04:02', 'admin', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for dict_datas
@@ -145,7 +145,7 @@ CREATE TABLE `dict_types`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dict_types
@@ -171,7 +171,7 @@ CREATE TABLE `friendly_links`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of friendly_links
@@ -203,7 +203,7 @@ CREATE TABLE `menus`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 55 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of menus
@@ -256,6 +256,8 @@ INSERT INTO `menus` VALUES (48, 42, '新增', NULL, NULL, NULL, '1', 'F', '1', 2
 INSERT INTO `menus` VALUES (49, 42, '修改', NULL, NULL, NULL, '1', 'F', '1', 3, '1', 'blog:articleType:update', '#', '0', NULL, '2021-01-23 10:10:00', 'test', NULL, NULL);
 INSERT INTO `menus` VALUES (50, 42, '删除', NULL, NULL, NULL, '1', 'F', '1', 4, '1', 'blog:articleType:delete', '#', '0', NULL, '2021-01-23 10:10:16', 'test', NULL, NULL);
 INSERT INTO `menus` VALUES (51, 8, '友情链接', 'friendlyLink', 'FriendlyLink', 'FriendlyLink', '1', 'C', '1', 10, '1', NULL, '#', '0', NULL, '2021-01-23 10:21:00', 'admin', NULL, NULL);
+INSERT INTO `menus` VALUES (53, 3, '状态显示', NULL, NULL, NULL, '1', 'F', '1', 10, '1', 'system:user:showStatus', '#', '0', NULL, '2021-01-29 14:02:59', 'admin', NULL, NULL);
+INSERT INTO `menus` VALUES (54, 4, '状态显示', NULL, NULL, NULL, '1', 'F', '1', 10, '1', 'system:role:showStatus', '#', '0', NULL, '2021-01-29 14:03:47', 'admin', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for notices
@@ -273,7 +275,12 @@ CREATE TABLE `notices`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of notices
+-- ----------------------------
+INSERT INTO `notices` VALUES (3, '公告', '1', '只是一个公告', '1', NULL, '2021-01-29 14:49:56', 'admin', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for role_menus
@@ -284,109 +291,91 @@ CREATE TABLE `role_menus`  (
   `roleId` int(11) NOT NULL COMMENT '角色roleId',
   `menuId` int(11) NOT NULL COMMENT '菜单menuId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 603 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 983 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role_menus
 -- ----------------------------
-INSERT INTO `role_menus` VALUES (505, 1, 1);
-INSERT INTO `role_menus` VALUES (506, 1, 8);
-INSERT INTO `role_menus` VALUES (507, 1, 52);
-INSERT INTO `role_menus` VALUES (508, 1, 9);
-INSERT INTO `role_menus` VALUES (509, 1, 45);
-INSERT INTO `role_menus` VALUES (510, 1, 43);
-INSERT INTO `role_menus` VALUES (511, 1, 44);
-INSERT INTO `role_menus` VALUES (512, 1, 46);
-INSERT INTO `role_menus` VALUES (513, 1, 42);
-INSERT INTO `role_menus` VALUES (514, 1, 47);
-INSERT INTO `role_menus` VALUES (515, 1, 48);
-INSERT INTO `role_menus` VALUES (516, 1, 49);
-INSERT INTO `role_menus` VALUES (517, 1, 50);
-INSERT INTO `role_menus` VALUES (518, 1, 51);
-INSERT INTO `role_menus` VALUES (519, 1, 2);
-INSERT INTO `role_menus` VALUES (520, 1, 3);
-INSERT INTO `role_menus` VALUES (521, 1, 13);
-INSERT INTO `role_menus` VALUES (522, 1, 14);
-INSERT INTO `role_menus` VALUES (523, 1, 15);
-INSERT INTO `role_menus` VALUES (524, 1, 16);
-INSERT INTO `role_menus` VALUES (525, 1, 4);
-INSERT INTO `role_menus` VALUES (526, 1, 17);
-INSERT INTO `role_menus` VALUES (527, 1, 18);
-INSERT INTO `role_menus` VALUES (528, 1, 19);
-INSERT INTO `role_menus` VALUES (529, 1, 20);
-INSERT INTO `role_menus` VALUES (530, 1, 5);
-INSERT INTO `role_menus` VALUES (531, 1, 21);
-INSERT INTO `role_menus` VALUES (532, 1, 22);
-INSERT INTO `role_menus` VALUES (533, 1, 23);
-INSERT INTO `role_menus` VALUES (534, 1, 24);
-INSERT INTO `role_menus` VALUES (535, 1, 6);
-INSERT INTO `role_menus` VALUES (536, 1, 25);
-INSERT INTO `role_menus` VALUES (537, 1, 26);
-INSERT INTO `role_menus` VALUES (538, 1, 27);
-INSERT INTO `role_menus` VALUES (539, 1, 28);
-INSERT INTO `role_menus` VALUES (540, 1, 7);
-INSERT INTO `role_menus` VALUES (541, 1, 29);
-INSERT INTO `role_menus` VALUES (542, 1, 30);
-INSERT INTO `role_menus` VALUES (543, 1, 31);
-INSERT INTO `role_menus` VALUES (544, 1, 32);
-INSERT INTO `role_menus` VALUES (545, 1, 33);
-INSERT INTO `role_menus` VALUES (546, 1, 34);
-INSERT INTO `role_menus` VALUES (547, 1, 35);
-INSERT INTO `role_menus` VALUES (548, 1, 36);
-INSERT INTO `role_menus` VALUES (549, 1, 37);
-INSERT INTO `role_menus` VALUES (550, 1, 38);
-INSERT INTO `role_menus` VALUES (551, 1, 39);
-INSERT INTO `role_menus` VALUES (552, 1, 40);
-INSERT INTO `role_menus` VALUES (553, 1, 41);
-INSERT INTO `role_menus` VALUES (554, 2, 1);
-INSERT INTO `role_menus` VALUES (555, 2, 8);
-INSERT INTO `role_menus` VALUES (556, 2, 52);
-INSERT INTO `role_menus` VALUES (557, 2, 9);
-INSERT INTO `role_menus` VALUES (558, 2, 45);
-INSERT INTO `role_menus` VALUES (559, 2, 43);
-INSERT INTO `role_menus` VALUES (560, 2, 44);
-INSERT INTO `role_menus` VALUES (561, 2, 46);
-INSERT INTO `role_menus` VALUES (562, 2, 42);
-INSERT INTO `role_menus` VALUES (563, 2, 47);
-INSERT INTO `role_menus` VALUES (564, 2, 48);
-INSERT INTO `role_menus` VALUES (565, 2, 49);
-INSERT INTO `role_menus` VALUES (566, 2, 50);
-INSERT INTO `role_menus` VALUES (567, 2, 51);
-INSERT INTO `role_menus` VALUES (568, 2, 2);
-INSERT INTO `role_menus` VALUES (569, 2, 3);
-INSERT INTO `role_menus` VALUES (570, 2, 13);
-INSERT INTO `role_menus` VALUES (571, 2, 14);
-INSERT INTO `role_menus` VALUES (572, 2, 15);
-INSERT INTO `role_menus` VALUES (573, 2, 16);
-INSERT INTO `role_menus` VALUES (574, 2, 4);
-INSERT INTO `role_menus` VALUES (575, 2, 17);
-INSERT INTO `role_menus` VALUES (576, 2, 18);
-INSERT INTO `role_menus` VALUES (577, 2, 19);
-INSERT INTO `role_menus` VALUES (578, 2, 20);
-INSERT INTO `role_menus` VALUES (579, 2, 5);
-INSERT INTO `role_menus` VALUES (580, 2, 21);
-INSERT INTO `role_menus` VALUES (581, 2, 22);
-INSERT INTO `role_menus` VALUES (582, 2, 23);
-INSERT INTO `role_menus` VALUES (583, 2, 24);
-INSERT INTO `role_menus` VALUES (584, 2, 6);
-INSERT INTO `role_menus` VALUES (585, 2, 25);
-INSERT INTO `role_menus` VALUES (586, 2, 26);
-INSERT INTO `role_menus` VALUES (587, 2, 27);
-INSERT INTO `role_menus` VALUES (588, 2, 28);
-INSERT INTO `role_menus` VALUES (589, 2, 7);
-INSERT INTO `role_menus` VALUES (590, 2, 29);
-INSERT INTO `role_menus` VALUES (591, 2, 30);
-INSERT INTO `role_menus` VALUES (592, 2, 31);
-INSERT INTO `role_menus` VALUES (593, 2, 32);
-INSERT INTO `role_menus` VALUES (594, 2, 33);
-INSERT INTO `role_menus` VALUES (595, 2, 34);
-INSERT INTO `role_menus` VALUES (596, 2, 35);
-INSERT INTO `role_menus` VALUES (597, 2, 36);
-INSERT INTO `role_menus` VALUES (598, 2, 37);
-INSERT INTO `role_menus` VALUES (599, 2, 38);
-INSERT INTO `role_menus` VALUES (600, 2, 39);
-INSERT INTO `role_menus` VALUES (601, 2, 40);
-INSERT INTO `role_menus` VALUES (602, 2, 41);
+INSERT INTO `role_menus` VALUES (603, 1, 1);
+INSERT INTO `role_menus` VALUES (604, 1, 8);
+INSERT INTO `role_menus` VALUES (605, 1, 9);
+INSERT INTO `role_menus` VALUES (606, 1, 45);
+INSERT INTO `role_menus` VALUES (607, 1, 43);
+INSERT INTO `role_menus` VALUES (608, 1, 44);
+INSERT INTO `role_menus` VALUES (609, 1, 46);
+INSERT INTO `role_menus` VALUES (610, 1, 42);
+INSERT INTO `role_menus` VALUES (611, 1, 47);
+INSERT INTO `role_menus` VALUES (612, 1, 48);
+INSERT INTO `role_menus` VALUES (613, 1, 49);
+INSERT INTO `role_menus` VALUES (614, 1, 50);
+INSERT INTO `role_menus` VALUES (615, 1, 51);
+INSERT INTO `role_menus` VALUES (616, 1, 2);
+INSERT INTO `role_menus` VALUES (617, 1, 3);
+INSERT INTO `role_menus` VALUES (618, 1, 13);
+INSERT INTO `role_menus` VALUES (619, 1, 14);
+INSERT INTO `role_menus` VALUES (620, 1, 15);
+INSERT INTO `role_menus` VALUES (621, 1, 16);
+INSERT INTO `role_menus` VALUES (622, 1, 53);
+INSERT INTO `role_menus` VALUES (623, 1, 4);
+INSERT INTO `role_menus` VALUES (624, 1, 17);
+INSERT INTO `role_menus` VALUES (625, 1, 18);
+INSERT INTO `role_menus` VALUES (626, 1, 19);
+INSERT INTO `role_menus` VALUES (627, 1, 20);
+INSERT INTO `role_menus` VALUES (628, 1, 54);
+INSERT INTO `role_menus` VALUES (629, 1, 5);
+INSERT INTO `role_menus` VALUES (630, 1, 21);
+INSERT INTO `role_menus` VALUES (631, 1, 22);
+INSERT INTO `role_menus` VALUES (632, 1, 23);
+INSERT INTO `role_menus` VALUES (633, 1, 24);
+INSERT INTO `role_menus` VALUES (634, 1, 6);
+INSERT INTO `role_menus` VALUES (635, 1, 25);
+INSERT INTO `role_menus` VALUES (636, 1, 26);
+INSERT INTO `role_menus` VALUES (637, 1, 27);
+INSERT INTO `role_menus` VALUES (638, 1, 28);
+INSERT INTO `role_menus` VALUES (639, 1, 7);
+INSERT INTO `role_menus` VALUES (640, 1, 29);
+INSERT INTO `role_menus` VALUES (641, 1, 30);
+INSERT INTO `role_menus` VALUES (642, 1, 31);
+INSERT INTO `role_menus` VALUES (643, 1, 32);
+INSERT INTO `role_menus` VALUES (644, 1, 33);
+INSERT INTO `role_menus` VALUES (645, 1, 34);
+INSERT INTO `role_menus` VALUES (646, 1, 35);
+INSERT INTO `role_menus` VALUES (647, 1, 36);
+INSERT INTO `role_menus` VALUES (648, 1, 37);
+INSERT INTO `role_menus` VALUES (649, 1, 38);
+INSERT INTO `role_menus` VALUES (650, 1, 39);
+INSERT INTO `role_menus` VALUES (651, 1, 40);
+INSERT INTO `role_menus` VALUES (652, 1, 41);
+INSERT INTO `role_menus` VALUES (983, 2, 1);
+INSERT INTO `role_menus` VALUES (984, 2, 8);
+INSERT INTO `role_menus` VALUES (985, 2, 9);
+INSERT INTO `role_menus` VALUES (986, 2, 45);
+INSERT INTO `role_menus` VALUES (987, 2, 43);
+INSERT INTO `role_menus` VALUES (988, 2, 44);
+INSERT INTO `role_menus` VALUES (989, 2, 46);
+INSERT INTO `role_menus` VALUES (990, 2, 42);
+INSERT INTO `role_menus` VALUES (991, 2, 47);
+INSERT INTO `role_menus` VALUES (992, 2, 48);
+INSERT INTO `role_menus` VALUES (993, 2, 49);
+INSERT INTO `role_menus` VALUES (994, 2, 50);
+INSERT INTO `role_menus` VALUES (995, 2, 51);
+INSERT INTO `role_menus` VALUES (996, 2, 13);
+INSERT INTO `role_menus` VALUES (997, 2, 17);
+INSERT INTO `role_menus` VALUES (998, 2, 21);
+INSERT INTO `role_menus` VALUES (999, 2, 6);
+INSERT INTO `role_menus` VALUES (1000, 2, 25);
+INSERT INTO `role_menus` VALUES (1001, 2, 26);
+INSERT INTO `role_menus` VALUES (1002, 2, 27);
+INSERT INTO `role_menus` VALUES (1003, 2, 28);
+INSERT INTO `role_menus` VALUES (1004, 2, 29);
+INSERT INTO `role_menus` VALUES (1005, 2, 33);
+INSERT INTO `role_menus` VALUES (1006, 2, 38);
+INSERT INTO `role_menus` VALUES (1007, 2, 2);
+INSERT INTO `role_menus` VALUES (1008, 2, 3);
+INSERT INTO `role_menus` VALUES (1009, 2, 4);
+INSERT INTO `role_menus` VALUES (1010, 2, 5);
+INSERT INTO `role_menus` VALUES (1011, 2, 7);
+INSERT INTO `role_menus` VALUES (1012, 2, 37);
 
 -- ----------------------------
 -- Table structure for roles
@@ -411,8 +400,8 @@ CREATE TABLE `roles`  (
 -- ----------------------------
 -- Records of roles
 -- ----------------------------
-INSERT INTO `roles` VALUES (1, '超级管理员', 'admin', 1, '1', '1', '0', NULL, '2021-01-08 12:04:02', 'admin', '2021-01-25 14:10:45', 'admin');
-INSERT INTO `roles` VALUES (2, '测试', 'test', 2, '1', '1', '0', NULL, '2021-01-23 09:40:29', 'admin', '2021-01-25 14:10:49', 'admin');
+INSERT INTO `roles` VALUES (1, '超级管理员', 'admin', 1, '1', '1', '0', NULL, '2021-01-08 12:04:02', 'admin', '2021-01-29 14:14:53', 'admin');
+INSERT INTO `roles` VALUES (2, '测试', 'test', 2, '1', '1', '0', NULL, '2021-01-23 09:40:29', 'admin', '2021-01-29 14:48:46', 'admin');
 
 -- ----------------------------
 -- Table structure for sequelizemeta
