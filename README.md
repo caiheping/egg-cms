@@ -118,49 +118,49 @@ cms-api
 
 **系统管理 > 用户管理**
 
-![](http://cdn.caihp.top/egg-cms/other/userManagement.png)
+![userManagement](http://cdn.caihp.top/egg-cms/other/userManagement.png)
 
 
 
 **系统管理 > 角色管理**
 
-![](http://cdn.caihp.top/egg-cms/other/roleManagement.png)
+![roleManagement](http://cdn.caihp.top/egg-cms/other/roleManagement.png)
 
 
 
 **系统管理 > 菜单管理**
 
-![](http://cdn.caihp.top/egg-cms/other/menuManagement.png)
+![menuManagement](http://cdn.caihp.top/egg-cms/other/menuManagement.png)
 
 
 
 **系统管理 > 部门管理**
 
-![](http://cdn.caihp.top/egg-cms/other/deptManagement.png)
+![deptManagement](http://cdn.caihp.top/egg-cms/other/deptManagement.png)
 
 
 
 **系统管理 > 字典管理**
 
-![](http://cdn.caihp.top/egg-cms/other/dictManagement.png)
+![dictManagement](http://cdn.caihp.top/egg-cms/other/dictManagement.png)
 
 
 
 **系统管理 > 通知公告**
 
-![](http://cdn.caihp.top/egg-cms/other/noticeManagement.png)
+![noticeManagement](http://cdn.caihp.top/egg-cms/other/noticeManagement.png)
 
 
 
 **我的博客 > 首页**
 
-![](http://cdn.caihp.top/egg-cms/other/web-home.png)
+![web-home](http://cdn.caihp.top/egg-cms/other/web-home.png)
 
 
 
 **我的博客 > 文章详情**
 
-![](http://cdn.caihp.top/egg-cms/other/web-article-detail.png)
+![web-article-detail](http://cdn.caihp.top/egg-cms/other/web-article-detail.png)
 
 
 
