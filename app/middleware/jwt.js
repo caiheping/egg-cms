@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { checkWhiteList, handleTree } = require('../utils/tools');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 module.exports = (options, app) => {
   return async function(ctx, next) {
@@ -33,6 +35,33 @@ module.exports = (options, app) => {
           ctx.state.user = user
           let departments = await ctx.model.Departments.findAndCountAll();
           ctx.state.departmentsObj = handleTree(departments.rows, 'deptId');
+          if (ctx.state.user.id === 1) { // 超级管理员权限
+            ctx.state.permissions = [
+              "*:*:*"
+            ]
+          } else {
+            let roleIds = ctx.state.user.roles.map(item => item.id)
+            let menus = await ctx.model["RoleMenu"].findAll({
+              where: {
+                roleId: {
+                  [Op.or]: roleIds
+                }
+              }
+            })
+            let menuIds = menus.map(item => item.menuId)
+            let obj = {
+              where: {
+                id: {
+                  [Op.or]: menuIds
+                },
+                status: '1' // 查询启用的菜单
+              },
+              order: [['orderNum', 'ASC']]
+            }
+            let result = await ctx.model['Menus'].findAndCountAll(obj);
+            let list = result.rows.filter(item => item.menuType === 'F')
+            ctx.state.permissions = list.map(list => list.perms)
+          }
           await next();
         } else {
           ctx.throw(401, '用户信息验证失败');

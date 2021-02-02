@@ -13,12 +13,14 @@ class Controller extends BaseController {
   // 查询
   async index() {
     const {ctx, service} = this;
+    console.log(ctx.state.user.createdBy, 111111111111111111111)
     // 查询参数
     const query = {
       limit: ctx.helper.parseInt(ctx.query.pageSize),
       offset: ctx.helper.parseInt(ctx.query.pageNum),
       roleName: ctx.query.roleName,
-      status: ctx.query.status
+      status: ctx.query.status,
+      createdBy: ctx.state.user.id === 1 ? null : ctx.state.user.userName
     };
     const result = await service[this.app.config.public].admin[this.modleName][this.serviceName].findList(query, [['roleSort', 'ASC']]);
     ctx.returnBody(result, 100010);

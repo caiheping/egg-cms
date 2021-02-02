@@ -12,24 +12,10 @@ class Controller extends BaseController {
   // 查询用户信息
   async getInfo () {
     const { ctx, service } = this;
-    // id为1的超级管理员，拥有全部权限
-    if (ctx.state.user.id === 1) {
-      ctx.returnBody({
-        permissions:[
-          "*:*:*"
-        ],
-        user: ctx.state.user
-      }, 100010);
-    } else {
-      const result = await service[this.app.config.public].admin[this.modleName]['menu'].findByUser()
-      let list = result.rows.filter(item => item.menuType === 'F')
-      let permissions = list.map(list => list.perms)
-      ctx.returnBody({
-        result,
-        permissions,
-        user: ctx.state.user
-      }, 100010);
-    }
+    ctx.returnBody({
+      permissions: ctx.state.permissions,
+      user: ctx.state.user
+    }, 100010);
   }
 
   // 查询
