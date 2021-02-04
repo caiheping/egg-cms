@@ -24,9 +24,9 @@ class CommonController extends Controller {
       let checkPwd = await ctx.compare(query.password, result.get('password')) // 对比两次密码是否一致
       if (!checkPwd) {
         return ctx.throw(500, '用户名或密码错误');
-      } else if (result.status === '0') {
+      } else if (result.status === '0' && result.id !== 1) {
         return ctx.throw(500, '该用户已经被停用！');
-      } else if (result.department.status === '0') {
+      } else if (result.department.status === '0' && result.id !== 1) {
         return ctx.throw(500, '该用户所在部门已经被停用！');
       } else {
         // 签发token
