@@ -72,6 +72,12 @@ module.exports = app => {
   }), controller[app.config.public].admin.system.notice); // 字典数据路由
 
   /**
+   * 博客模块特殊处理
+   * */ 
+  router.get(`/api/${app.config.public}/admin/blog/articleType/getAllType`, app.middleware.auth({
+    get: 'blog:articleType:getAllType'
+  }), controller[app.config.public].admin.blog.articleType.getAllType); // 获取所有类型
+  /**
    * 博客模块
    */
   router.resources('article', `/api/${app.config.public}/admin/blog/article`, app.middleware.auth({
@@ -92,10 +98,4 @@ module.exports = app => {
     put: 'blog:friendlyLink:update',
     delete: 'blog:friendlyLink:delete'
   }), controller[app.config.public].admin.blog.friendlyLink); // 友情链接路由
-  /**
-   * 博客模块特殊处理
-   * */ 
-  router.get(`/api/${app.config.public}/admin/blog/articleType/getAllType`, app.middleware.auth({
-    get: 'blog:articleType:getAllType'
-  }), controller[app.config.public].admin.blog.articleType.getAllType); // 获取所有类型
 };
