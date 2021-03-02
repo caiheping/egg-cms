@@ -22,6 +22,8 @@ MySQL数据库
 
 ```bash
 git clone https://github.com/caiheping/egg-cms.git
+# 如果clone 很慢，也可以拉码云的仓库
+git clone https://gitee.com/caiheping/egg-cms.git
 cd egg-cms
 npm install
 ```
@@ -86,7 +88,7 @@ cms-api
 ...
 ```
 
-演示地址：http://blog.caihp.top/web （自己服务器只开发部分功能，想要查看全部功能，请copy代码在自己的电脑上看）
+演示地址：http://blog.caihp.top/web （自己服务器只开放部分功能，想要查看全部功能，请copy代码在自己的电脑上看）
 
 用户名： test
 
