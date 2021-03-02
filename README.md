@@ -86,7 +86,7 @@ cms-api
 ...
 ```
 
-演示地址：http://blog.caihp.top/ （自己服务器只开发部分功能，想要查看全部功能，请copy代码在自己的电脑上看）
+演示地址：http://blog.caihp.top/web （自己服务器只开发部分功能，想要查看全部功能，请copy代码在自己的电脑上看）
 
 用户名： test
 
