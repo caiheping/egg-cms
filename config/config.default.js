@@ -84,7 +84,7 @@ module.exports = appInfo => {
     port: 3306, // mysql服务端口
     database: 'egg_cms_development', // 数据库名
     username: 'root', // 数据库用户名
-    password: '123456', // 数据库密码
+    password: 'c9f4627839fa383a', // 数据库密码
     timezone: '+8:00', // 由于orm用的UTC时间，这里必须加上东八区，否则取出来的时间相差8小时
     define: {  // model的全局配置
       timestamps: false,   // 添加create,update,delete时间戳

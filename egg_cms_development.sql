@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 远程服务器
+ Source Server         : 127.0.0.1
  Source Server Type    : MySQL
- Source Server Version : 80020
- Source Host           : 42.192.250.225:3306
+ Source Server Version : 80016
+ Source Host           : 127.0.0.1:3306
  Source Schema         : egg_cms_development
 
  Target Server Type    : MySQL
- Target Server Version : 80020
+ Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 02/03/2021 11:19:44
+ Date: 25/03/2021 10:38:15
 */
 
 SET NAMES utf8mb4;
@@ -22,18 +22,18 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `article_types`;
 CREATE TABLE `article_types`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `userId` int(0) NOT NULL COMMENT '用户id',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL COMMENT '用户id',
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
   `key` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `orderNum` int(0) NOT NULL COMMENT '显示排序',
+  `orderNum` int(11) NOT NULL COMMENT '显示排序',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   `createdAt` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `createdBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建者',
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of article_types
@@ -48,12 +48,12 @@ INSERT INTO `article_types` VALUES (6, 2, 'test', 'test', 1, NULL, '2021-03-02 1
 -- ----------------------------
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `userId` int(0) NOT NULL COMMENT '用户id',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL COMMENT '用户id',
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标题',
   `subTitle` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '副标题',
   `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '类型',
-  `hot` int(0) NULL DEFAULT 0 COMMENT '热度',
+  `hot` int(11) NULL DEFAULT 0 COMMENT '热度',
   `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '内容',
   `createdAt` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `createdBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建者',
@@ -77,10 +77,10 @@ INSERT INTO `articles` VALUES (7, 1, 'React Native搭配夜神模拟器调试(wi
 -- ----------------------------
 DROP TABLE IF EXISTS `departments`;
 CREATE TABLE `departments`  (
-  `deptId` int(0) NOT NULL AUTO_INCREMENT,
-  `parentId` int(0) NOT NULL COMMENT '父Id',
+  `deptId` int(11) NOT NULL AUTO_INCREMENT,
+  `parentId` int(11) NOT NULL COMMENT '父Id',
   `deptName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '部门名称',
-  `orderNum` int(0) NOT NULL COMMENT '显示顺序',
+  `orderNum` int(11) NOT NULL COMMENT '显示顺序',
   `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '部门状态（1正常 0停用）',
   `isDelete` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
   `createdAt` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
@@ -102,8 +102,8 @@ INSERT INTO `departments` VALUES (5, 2, '测试一部', 2, '1', '0', '2021-02-02
 -- ----------------------------
 DROP TABLE IF EXISTS `dict_datas`;
 CREATE TABLE `dict_datas`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `dictSort` int(0) NOT NULL COMMENT '字典排序',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dictSort` int(11) NOT NULL COMMENT '字典排序',
   `dictLabel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '字典标签',
   `dictValue` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '字典键值',
   `dictType` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '字典类型',
@@ -117,7 +117,7 @@ CREATE TABLE `dict_datas`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dict_datas
@@ -138,7 +138,7 @@ INSERT INTO `dict_datas` VALUES (17, 2, '停用', '2', 'sys_notice_status', NULL
 -- ----------------------------
 DROP TABLE IF EXISTS `dict_types`;
 CREATE TABLE `dict_types`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `dictName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '字典名称',
   `dictType` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '字典类型',
   `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '菜单状态（1正常 2停用）',
@@ -148,7 +148,7 @@ CREATE TABLE `dict_types`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dict_types
@@ -164,8 +164,8 @@ INSERT INTO `dict_types` VALUES (5, '公告状态', 'sys_notice_status', '1', '�
 -- ----------------------------
 DROP TABLE IF EXISTS `friendly_links`;
 CREATE TABLE `friendly_links`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `userId` int(0) NOT NULL COMMENT '用户id',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL COMMENT '用户id',
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称',
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '链接',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
@@ -186,8 +186,8 @@ INSERT INTO `friendly_links` VALUES (3, 1, 'baidu', 'https://www.baidu.com/?tn=7
 -- ----------------------------
 DROP TABLE IF EXISTS `menus`;
 CREATE TABLE `menus`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `parentId` int(0) NOT NULL COMMENT '父Id',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parentId` int(11) NOT NULL COMMENT '父Id',
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '菜单名称',
   `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单路径',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
@@ -195,7 +195,7 @@ CREATE TABLE `menus`  (
   `isFrame` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '是否为外链（1是 0否）',
   `menuType` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'M' COMMENT '菜单类型（M目录 C菜单 F按钮）',
   `visible` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '菜单显示状态（1显示 0隐藏）',
-  `orderNum` int(0) NOT NULL COMMENT '显示顺序',
+  `orderNum` int(11) NOT NULL COMMENT '显示顺序',
   `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '菜单状态（1正常 0停用）',
   `perms` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限标识',
   `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '#' COMMENT '图标',
@@ -206,7 +206,7 @@ CREATE TABLE `menus`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 63 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 64 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of menus
@@ -276,7 +276,7 @@ INSERT INTO `menus` VALUES (63, 42, '查询全部类型', NULL, NULL, NULL, '1',
 -- ----------------------------
 DROP TABLE IF EXISTS `notices`;
 CREATE TABLE `notices`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `noticeTitle` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '公告标题',
   `noticeType` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '1' COMMENT '公告类型（1通知 2公告）',
   `noticeContent` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '内容',
@@ -287,7 +287,7 @@ CREATE TABLE `notices`  (
   `updatedAt` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `updatedBy` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of notices
@@ -299,11 +299,11 @@ INSERT INTO `notices` VALUES (3, '公告', '1', '只是一个公告', '1', NULL,
 -- ----------------------------
 DROP TABLE IF EXISTS `role_menus`;
 CREATE TABLE `role_menus`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `roleId` int(0) NOT NULL COMMENT '角色roleId',
-  `menuId` int(0) NOT NULL COMMENT '菜单menuId',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `roleId` int(11) NOT NULL COMMENT '角色roleId',
+  `menuId` int(11) NOT NULL COMMENT '菜单menuId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1696 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1765 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role_menus
@@ -453,10 +453,10 @@ INSERT INTO `role_menus` VALUES (1764, 2, 37);
 -- ----------------------------
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `roleName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色名称',
   `roleKey` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色权限字符串',
-  `roleSort` int(0) NOT NULL COMMENT '显示顺序',
+  `roleSort` int(11) NOT NULL COMMENT '显示顺序',
   `dataScope` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '数据范围（1：本部门及以下数据权限 2：本部门数据权限 3：仅本人权限）',
   `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '角色状态（1正常 0停用）',
   `isDelete` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
@@ -506,9 +506,9 @@ INSERT INTO `sequelizemeta` VALUES ('20201113071642-init-users.js');
 -- ----------------------------
 DROP TABLE IF EXISTS `user_roles`;
 CREATE TABLE `user_roles`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `userId` int(0) NOT NULL COMMENT '用户id',
-  `roleId` int(0) NOT NULL COMMENT '角色id',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL COMMENT '用户id',
+  `roleId` int(11) NOT NULL COMMENT '角色id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -523,8 +523,8 @@ INSERT INTO `user_roles` VALUES (18, 2, 2);
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `deptId` int(0) NOT NULL COMMENT '部门deptId',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `deptId` int(11) NOT NULL COMMENT '部门deptId',
   `userName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名',
   `nickName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
   `sex` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '性别（0代表女 1代表男）',
