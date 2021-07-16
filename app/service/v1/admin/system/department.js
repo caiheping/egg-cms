@@ -11,10 +11,9 @@ class Service extends BaseService {
 
   // 刪除id
   async destroy (deptId) {
+    // 建立事务对象
+    const transaction = await this.ctx.model.transaction();
     try {
-      // 建立事务对象
-      let transaction = await this.ctx.model.transaction();
-      
       // 事务增操作
       let depts = await this.ctx.model[this.modelName].findAll({
         where: {
@@ -48,6 +47,7 @@ class Service extends BaseService {
       await transaction.commit();
       return true
     } catch (error) {
+      transaction.rollback();
       this.ctx.throw(500, error)
     }
   }

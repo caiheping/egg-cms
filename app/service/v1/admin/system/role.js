@@ -26,10 +26,9 @@ class Service extends BaseService {
 
   // 新增
   async create (query) {
+    // 建立事务对象
+    const transaction = await this.ctx.model.transaction();
     try {
-      // 创建事务
-      let transaction = await this.ctx.model.transaction();
-
       let role = await this.ctx.model[this.modelName].create(query, {
         transaction
       })
@@ -51,6 +50,7 @@ class Service extends BaseService {
       await transaction.commit();
       return true
     } catch (error) {
+      transaction.rollback();
       this.ctx.throw(500, '服务器错误') 
     }
   }
@@ -64,10 +64,9 @@ class Service extends BaseService {
 
   // 修改
   async update (query, where) {
+    // 建立事务对象
+    const transaction = await this.ctx.model.transaction();
     try {
-      // 建立事务对象
-      let transaction = await this.ctx.model.transaction();
-      
       // 事务操作
       await this.ctx.model[this.modelName].update(query, {
         where,
@@ -96,6 +95,7 @@ class Service extends BaseService {
       await transaction.commit();
       return true
     } catch (error) {
+      transaction.rollback();
       console.log(error)
       this.ctx.throw(500, '服务器错误');
     }
@@ -114,10 +114,9 @@ class Service extends BaseService {
     if (idLists.length) {
       this.ctx.throw(500, '角色下存在用户，不允许删除！');
     }
+    // 建立事务对象
+    const transaction = await this.ctx.model.transaction();
     try {
-      // 建立事务对象
-      let transaction = await this.ctx.model.transaction();
-      
       await this.ctx.model[this.modelName].destroy({
         where: {
           id: {
@@ -138,6 +137,7 @@ class Service extends BaseService {
       await transaction.commit();
       return true
     } catch (error) {
+      transaction.rollback();
       this.ctx.throw(500, '服务器错误');
     }
   }

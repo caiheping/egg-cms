@@ -63,10 +63,9 @@ class Service extends BaseService {
 
   // 新增
   async create (query) {
+    // 建立事务对象
+    const transaction = await this.ctx.model.transaction();
     try {
-      // 建立事务对象
-      let transaction = await this.ctx.model.transaction();
-      
       // 事务增操作
       let user = await this.ctx.model.Users.create(query, {
         transaction
@@ -88,6 +87,7 @@ class Service extends BaseService {
       await transaction.commit();
       return true
     } catch (error) {
+      transaction.rollback();
       if (error.name === 'SequelizeUniqueConstraintError') {
         this.ctx.throw(500, '用户名已经被占用') 
       } else {
@@ -117,10 +117,9 @@ class Service extends BaseService {
 
   // 修改
   async update (query, id) {
+    // 建立事务对象
+    const transaction = await this.ctx.model.transaction();
     try {
-      // 建立事务对象
-      let transaction = await this.ctx.model.transaction();
-      
       // 事务增操作
       await this.ctx.model.Users.update(query, {
         where: {
@@ -151,6 +150,7 @@ class Service extends BaseService {
       await transaction.commit();
       return true
     } catch (error) {
+      transaction.rollback();
       if (error.name === 'SequelizeUniqueConstraintError') {
         this.ctx.throw(500, '用户名已经被占用') 
       } else {
@@ -161,10 +161,9 @@ class Service extends BaseService {
 
   // 删除
   async destroy (ids) {
+    // 建立事务对象
+    const transaction = await this.ctx.model.transaction();
     try {
-      // 建立事务对象
-      let transaction = await this.ctx.model.transaction();
-      
       await this.ctx.model.Users.destroy({
         where: {
           id: {
@@ -185,6 +184,7 @@ class Service extends BaseService {
       await transaction.commit();
       return true
     } catch (error) {
+      transaction.rollback();
       this.ctx.throw(500, '服务器错误') 
     }
   }
