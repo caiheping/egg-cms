@@ -44,7 +44,7 @@ class Controller extends BaseController {
 
     allTypes.rows.forEach(item => {
       if (item.key === ctx.request.body.key) {
-        throw Error('该类型已存在！');
+        throw Error('不能新增已有键值！');
       }
     })
 
@@ -70,8 +70,8 @@ class Controller extends BaseController {
     });
 
     allTypes.rows.forEach(item => {
-      if (item.key === ctx.request.body.key) {
-        throw Error('该类型已存在！');
+      if (item.key === ctx.request.body.key && item.id !== ctx.request.body.id) {
+        throw Error('该键值已存在，请换个键值！');
       }
     })
     
