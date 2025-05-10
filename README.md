@@ -176,6 +176,8 @@ cms-api
 
                  博客管理>文章列表————曾雨情
 **一、关于项目的搭建：**
+
+
 1.搭建环境下载软件：node-v20.18.0-x64  和 Navicat
 
 2.在Navicat中，创建数据库egg_cms_development,然后导入原博主的项目根目录下数据库数据egg_cms_development.sql文件
