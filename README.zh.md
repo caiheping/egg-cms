@@ -1,7 +1,7 @@
-                 后台管理系统————文章管理
-一、关于项目的搭建：
-1.搭建环境下载软件：node-v20.18.0-x64  和 Navicat
-2.在Navicat中，创建数据库egg_cms_development,然后导入原博主的项目根目录下数据库数据egg_cms_development.sql文件
-3.用VSC打开项目，然后修改config/config.default.js文件中的数据库名和密码，以及主机地址。
-4.在VSC里新建终端用命令 npm run dev 运行项目
-5.运行成功后浏览器打开网址http://127.0.0.1:7001/index.html，即可成功打开项目，项目默认登录账号admin,密码：123456，只需输入图片验证码即可进入首页。
+### Blog Management > Article List ———— Zeng Yuqing
+1. **About Setting Up the Project:**
+- 1. Set up the environment by downloading the software: node-v20.18.0-x64 and Navicat 
+- 2. In Navicat, create the database egg_cms_development and then import the database data from the original blogger's project root directory, egg_cms_development.sql file
+- 3. Open the project in VSC and modify the database name and password in the config/config.default.js file, as well as the host address. 
+- 4. In VSC, create a new terminal and run the project with the command npm run dev 
+- 5. After successful execution, open the browser to the address http://127.0.0.1:7001/index.html to successfully access the project. The default login account is admin, password: 123456, and you only need to enter the image verification code to access the homepage.
