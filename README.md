@@ -179,7 +179,7 @@ cms-api
 **一、关于项目的搭建：**
 
 
-1. 搭建环境下载软件：node版本8以上  和 Navicat
+1. 搭建环境下载软件：node版本8以上  和 Navicat（或者MySQL数据库）
 
 2. 在Navicat中，创建数据库egg_cms_development,然后导入原博主的项目根目录下数据库数据egg_cms_development.sql文件
 
