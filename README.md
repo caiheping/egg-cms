@@ -173,5 +173,23 @@ cms-api
 **传送门：前端vue3 + 后端egg项目地址：https://github.com/caiheping/oa-api   或者  https://gitee.com/caiheping/oa-api**
 
 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
-** 博客管理 > 友情链接   莫玉霞 **
-friendlyLink.js里面代码是一个使用 Sequelize ORM（对象关系映射）框架定义数据库模型的 JavaScript 代码片段
+
+##关于项目的搭建运行
+环境
+node版本8以上，MySQL数据库
+
+数据库
+创建数据库egg_cms_development
+
+在egg_cms_development数据库下导入项目根目录下egg_cms_development.sql文件
+
+运行项目
+npm run dev
+
+浏览器打开 http://127.0.0.1:7001/index.html
+
+admin登录账号：admin，密码： 123456
+普通用户账号密码自己用admin去用户管理创建
+
+
+
