@@ -203,3 +203,75 @@ Here’s a guide on how to use the article type page:
 - Ensure that the names and key values of the article types entered are unique to avoid duplication.
 - Editing and deleting operations are irreversible, please proceed with caution.
 - Ensure to back up important data before operating to prevent data loss due to misoperation.
+
+- # Personal Center + Layout Settings --- Zhang Linpei
+
+## Personal Center
+
+In the top-right corner of the homepage of the backend management system, clicking the dropdown arrow next to your avatar provides access to three options: Personal Center, Layout Settings, and Log Out.
+
+### Functional Overview
+
+- **Personal Information Management**: View and edit basic information such as username, mobile phone number, and email address.
+- **Account Security**: Use mobile phone numbers and email addresses for security verification, such as password recovery or receiving system notifications.
+- **Personalized Services**: Select gender for personalized services or statistical analysis.
+- **Permission Management**: Display the department and role the user belongs to, helping system administrators understand the user's organizational affiliation and facilitating permission management and work coordination.
+- **Account History**: Record the account creation time, which is helpful for tracking the account's history and conducting audits.
+
+### Interface Introduction
+
+1. **Personal Information Overview**:
+   - Displays basic information such as the user's avatar, username, department, role, and creation date.
+
+2. **Username**:
+   - Displayed as "admin," identifying the user's identity within the system.
+
+3. **Mobile Phone Number and Email Address**:
+   - Input fields for filling in or modifying contact information, used for account security verification and receiving system notifications.
+
+4. **Gender**:
+   - Provides options for "Male" and "Female," used for personalized services or statistical analysis.
+
+5. **Department and Role**:
+   - Displays the user's organizational structure and permission level, defining the operations the user can perform within the system.
+
+6. **Creation Date**:
+   - Records the account creation time, which is useful for tracking the account's history and conducting audits.
+
+7. **Basic Information and Change Password Tabs**:
+   - Provide interfaces for users to manage their personal information and account security.
+
+8. **Save and Close Buttons**:
+   - The "Save" button is used to save the user's modifications to personal information, while the "Close" button is used to close the Personal Center page.
+
+## Layout Settings
+
+The Layout Settings feature is located in the system layout configuration area at the top-right corner, allowing users to customize and adjust the system interface's layout to meet their personal work habits and preferences.
+
+### Customizable Content
+
+1. **Theme Color**:
+   - Allows users to select different theme colors to change the overall visual style of the interface, providing a more personalized user experience.
+
+2. **Enable Tags-Views**:
+   - Controls whether to display tag views on the interface, helping users quickly switch between different work pages and improving work efficiency.
+
+3. **Fixed Header**:
+   - Allows users to choose whether to fix the top navigation bar of the page, making it easier to access navigation options when scrolling.
+
+4. **Display Logo**:
+   - Controls whether to display the system logo at the top of the page, enhancing brand recognition and making the interface more aesthetically pleasing.
+
+### Usage Instructions
+
+1. **Access Layout Settings**:
+   - Find the system layout configuration area at the top-right corner, which contains all layout settings options.
+
+2. **Adjust Settings**:
+   - Adjust the settings according to personal preferences by clicking on the corresponding switches or selectors.
+
+3. **Save Settings**:
+   - After completing the settings, the system usually automatically saves your choices, or you may need to click a "Save" button to apply the changes.
+
+4. **View Effects**:
+   - Once the settings are adjusted, the interface will immediately reflect your changes, allowing you to see the new layout effects right away.
