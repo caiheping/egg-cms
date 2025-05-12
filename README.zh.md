@@ -275,3 +275,68 @@ The Layout Settings feature is located in the system layout configuration area a
 
 4. **View Effects**:
    - Once the settings are adjusted, the interface will immediately reflect your changes, allowing you to see the new layout effects right away.
+
+# System Management > User Center—Wu Hui Zhen
+
+## User Center
+
+### View User List
+- Upon accessing the User Center page, all registered users will be displayed in the list.
+
+### Pagination Navigation
+- When dealing with a large number of users, utilize the pagination controls at the bottom of the page to browse through different pages.
+
+### Search for Users
+1. **Using the search box:** Enter the desired username in the search field located at the top of the page.
+2. **Execute search:** Click the "Search" button to display users matching the search criteria.
+3. **Reset search:** Click the "Reset" button to clear the current search conditions if needed.
+
+### View User Details
+- Click on any username in the list to view the detailed user information.
+
+### Modify User Information
+1. **Click "Edit":** Locate the target user in the list and click the "Edit" button in their corresponding row.
+2. **Edit user details:** A modification dialog will appear, allowing you to edit:
+   - Nickname
+   - Department
+   - Gender
+   - Role
+   - Mobile number
+   - Status (Active/Inactive)
+   - Email
+   - Remarks
+3. **Save changes:** Click "Confirm" to save all modifications.
+
+### Delete User
+1. **Click "Delete":** Identify the user you wish to remove and click the "Delete" button in their row.
+2. **Confirmation:** The system will display a confirmation dialog - click "Confirm" to proceed with deletion.
+
+### Reset User Password
+1. **Click "Reset Password":** Locate the user and click the "Reset Password" button in their row.
+2. **Enter new password:** A prompt will appear requesting the new password.
+3. **Confirm reset:** Enter the new password and click "Confirm" to complete the process.
+
+### Add New User
+1. **Click "Add":** Select the "Add" button located above the user list.
+2. **Complete user information:** Fill in all required fields in the pop-up window:
+   - Nickname
+   - Department
+   - Gender
+   - Role
+   - Mobile number
+   - Status (Active/Inactive)
+   - Email
+   - Remarks
+3. **Save information:** Click "Confirm" to register the new user.
+
+### Manage User Status
+- Locate the target user and toggle their status switch between "Active" and "Inactive".
+
+### Benefits of User Center
+The User Center module in the backend management system provides:
+- Centralized user information management
+- Enhanced system security and stability
+- Simplified maintenance and scalability
+- Improved user engagement through feedback mechanisms
+- Better alignment with actual user requirements
+- Optimized user experience
