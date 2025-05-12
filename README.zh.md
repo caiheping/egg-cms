@@ -130,4 +130,76 @@ The system will display a confirmation dialog:
 1. **Hierarchy Relationships**:  
    - Ensure the correct **parent department** is selected to maintain a clear organizational structure.  
 2. **Status Management**:  
-   - **Inactivating** a department may affect its sub-departments and related permissions. Proceed with caution. 
+   - **Inactivating** a department may affect its sub-departments and related permissions. Proceed with caution.
+
+
+  
+ # Blog Management > Article Type — Liang Wenli
+
+## Introduction to the Blog Management > Article Type Feature:
+
+Here’s a guide on how to use the article type page:
+
+### Interface Overview:
+
+- **Article Type Page:**
+  - **Left Navigation Bar**
+    - Contains multiple management modules such as "Home", "Blog Management", "Article List", "Article Type", "Friendly Links", and "System Management".
+    - The currently selected module is "Article Type".
+  - **Top Navigation Bar**
+    - Includes a search box, refresh button, user information, etc.
+  - **Article Type List**
+    - Displays the existing article types.
+    - The list includes the following columns:
+      - **Name**: The name of the article type.
+      - **Key**: The key value of the article type.
+      - **Display Order**: The display sequence of the article type.
+      - **Remarks**: Notes about the article type.
+      - **Creation Time**: The time when the article type was created.
+      - **Operations**: Provides "Edit" and "Delete" buttons for editing or deleting article types.
+  - **Pagination Control**
+    - Shows the current page number and total number of items, and provides page-turning functionality.
+
+- **Add Article Type Popup:**
+  - **Popup Title**
+    - Displays "Add Article Type".
+  - **Input Fields**
+    - **Name**: Enter the name of the article type (required).
+    - **Key**: Enter the key value of the article type (required).
+    - **Display Order**: Set the display order of the article type (default value is 0).
+    - **Remarks**: Enter remarks about the article type (optional).
+  - **Operation Buttons**
+    - **Confirm**: Click to save the newly added article type.
+    - **Cancel**: Click to cancel the operation and close the popup.
+
+### Usage Guide:
+
+- **View Article Types**
+  1. Click "Article Type" in the left navigation bar to enter the article type page.
+  2. View the existing article types and their related information in the article type list.
+
+- **Add Article Type**
+  1. On the article type page, click the "Add" button.
+  2. In the "Add Article Type" popup:
+     - Enter the name of the article type (required).
+     - Enter the key value of the article type (required).
+     - Set the display order (optional, default value is 0).
+     - Enter remarks (optional).
+  3. Click the "Confirm" button to save the newly added article type, or click the "Cancel" button to cancel the operation.
+
+- **Edit Article Type**
+  1. Find the article type that needs to be edited in the article type list.
+  2. Click the "Edit" button in the corresponding row.
+  3. Make changes in the pop-up editing window.
+  4. Click the "Confirm" button to save the changes, or click the "Cancel" button to cancel the operation.
+
+- **Delete Article Type**
+  1. Find the article type that needs to be deleted in the article type list.
+  2. Click the "Delete" button in the corresponding row.
+  3. The system will pop up a confirmation dialog box, and after confirmation, the article type will be deleted.
+
+### Precautions:
+
+- Ensure that the names and key values of the article types entered are unique to avoid duplication.
+- Editing and deleting operations are irreversible, please proceed with caution.
+- Ensure to back up important data before operating to prevent data loss due to misoperation.
