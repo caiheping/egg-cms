@@ -62,3 +62,9 @@
 2. **操作 (Operation)**
    - **中文解释：** “操作”指的是用户可以对用户信息进行的各种管理活动，如修改、删除或重置密码等。
    - **英文解释：** "Operation" refers to various management activities that can be performed on user information, such as modifying, deleting, or resetting passwords.
+
+### Role(角色)
+含义：在计算机领域这是一个重要的权限管理和访问控制概念，主要用于定义用户在系统中的职责和操作权限。
+### Data Permissions(数据权限)
+含义：数据权限，是指对系统中数据的访问控制，它决定了用户可以访问哪些数据，以及可以对这些数据进行哪些操作。
+
