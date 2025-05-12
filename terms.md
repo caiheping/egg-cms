@@ -54,3 +54,11 @@
 - 实现个性化服务，并符合数据保护法规。
 
 ---
+# 系统管理 > 用户中心
+1. **测试 (Test)**
+   - **中文解释：** 在用户中心页面中，“测试”通常指的是一个用于测试目的的用户账户，可能用于在系统开发或更新过程中进行功能测试。
+   - **英文解释：** In the User Center page, "Test" typically refers to a user account used for testing purposes, often used during system development or updates to test features.
+
+2. **操作 (Operation)**
+   - **中文解释：** “操作”指的是用户可以对用户信息进行的各种管理活动，如修改、删除或重置密码等。
+   - **英文解释：** "Operation" refers to various management activities that can be performed on user information, such as modifying, deleting, or resetting passwords.
