@@ -340,3 +340,68 @@ The User Center module in the backend management system provides:
 - Improved user engagement through feedback mechanisms
 - Better alignment with actual user requirements
 - Optimized user experience
+
+
+  # Role Management – Li Youling  
+
+## View Role List  
+1. **Open the Role Management Page**  
+   - After logging into the backend management system, click **"Role Management"** in the left navigation bar.  
+   - The page will display the existing roles and their details, including:  
+     - Role ID  
+     - Role name  
+     - Permission key  
+     - Display order  
+     - Status  
+     - Creator  
+     - Creation time  
+
+## Add a New Role  
+1. **Click "Add"**  
+   - Click the **"Add"** button at the top of the role management page.  
+2. **Fill in Information**  
+   - In the pop-up window, enter:  
+     - Role name  
+     - Permission key  
+     - Display order  
+     - Status (enable/disable)  
+     - Menu permissions  
+3. **Save the Role**  
+   -  Add remarks.  
+   - Click **"Confirm"** to save the new role.  
+
+## Edit a Role  
+1. **Select the Role**  
+   - In the role list, locate the role you want to edit.  
+2. **Modify Role Information**  
+   - Click the **"Edit"** button on the right.  
+   - Update the role details in the pop-up window.  
+3. **Save Changes**  
+   - Click **"Confirm"** to apply changes.  
+
+## Assign Data Permissions  
+1. **Select the Role for Permission Assignment**  
+   - In the role list, find the role and click the **"Data Permissions"** button.  
+2. **Configure Role Permissions**  
+   - Fill in:  
+     - Role name  
+     - Permission key  
+   - In the **Permission Scope** dropdown, select department-based data permissions.  
+3. **Save the Settings**  
+   - Click **"Confirm"** to finalize permissions.  
+
+## Delete a Role  
+1. **Select the Role to Delete**  
+   - Check the box next to the roles in the list.  
+   - Click the **"Delete"** button at the top.  
+2. **Confirm Deletion**  
+   - Click **"Confirm"** in the pop-up to proceed.  
+
+## Search and Filter Roles  
+- Use the search box to filter by:  
+  - Role name  
+  - Status  
+- Click **"Search"** to apply filters.  
+ 
+The **Role Management** feature enables efficient control over system roles and permissions, ensuring security and flexibility.  
+
