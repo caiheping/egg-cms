@@ -1,4 +1,4 @@
-### Blog Management > Article List ———— Zeng Yuqing
+# Blog Management > Article List ———— Zeng Yuqing
 **I.About Setting Up the Project:**
 - 1. Set up the environment by downloading the software: node-v20.18.0-x64 and Navicat 
 - 2. In Navicat, create the database egg_cms_development and then import the database data from the original blogger's project root directory, egg_cms_development.sql file
@@ -70,7 +70,7 @@ The design of this add article page allows users to easily create and edit artic
 
 
 
-### Department Management - huangxiaorong 
+# Department Management - huangxiaorong 
 
 #### View Department List (Displayed on the Department Management Page)  
 **Open the Department List Page**  
@@ -133,8 +133,7 @@ The system will display a confirmation dialog:
    - **Inactivating** a department may affect its sub-departments and related permissions. Proceed with caution.
 
 
-  
- # Blog Management > Article Type — Liang Wenli
+# Blog Management > Article Type — Liang Wenli
 
 ## Introduction to the Blog Management > Article Type Feature:
 
@@ -204,7 +203,7 @@ Here’s a guide on how to use the article type page:
 - Editing and deleting operations are irreversible, please proceed with caution.
 - Ensure to back up important data before operating to prevent data loss due to misoperation.
 
-- # Personal Center + Layout Settings --- Zhang Linpei
+ # Personal Center + Layout Settings --- Zhang Linpei
 
 ## Personal Center
 
