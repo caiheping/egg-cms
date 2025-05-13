@@ -35,7 +35,7 @@
 这有助于提高页面加载速度和改善用户体验，因为它允许用户一次只查看一部分数据，而不是一次性加载所有数据。
 
 
-## Responsive Navigation Bar(响应式导航栏) (zhanglingpei)
+## Responsive Navigation Bar(响应式导航栏) (zhanglinpei)
 
 定义：  
 一种能够根据不同设备和屏幕尺寸自动调整的网页导航栏。
