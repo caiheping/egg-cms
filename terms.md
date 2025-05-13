@@ -68,3 +68,28 @@
 ### Data Permissions(数据权限)
 含义：数据权限，是指对系统中数据的访问控制，它决定了用户可以访问哪些数据，以及可以对这些数据进行哪些操作。
 
+# 系统管理 > 菜单管理
+
+1.**require**：用于导入其他模块。
+
+2.**module.exports**：用于导出当前模块的功能。
+
+3.**extends**：用于继承父类，表示当前类继承自另一个类。
+
+4.**async**：声明一个异步函数
+
+5.**autoIncrement: true**：该字段会自动递增，通常用于主键。
+
+6.**this.app.config**：用于访问应用的配置文件，了解如何使用配置文件可以帮助更好地管理应用的配置信息。
+
+7.**findAllMenu 和 findByUser**：服务层提供的方法，分别用于查询所有菜单和根据用户查询菜单。
+
+8.**app.model.define**：通过定义模型，可以将数据库表结构映射为 JavaScript 对象，方便操作数据库。
+
+9.**associate**：定义模型之间的关联关系。
+
+10.**belongsToMany**：定义多对多关联关系。Menus 和 Roles 之间通过 role_menus 表建立了多对多关系。
+
+11.**app.Sequelize**：Sequelize 是一个流行的 Node.js ORM 库，用于操作数据库。
+
+12：**autoIncrement**：字段是否自动递增。
