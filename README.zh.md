@@ -405,3 +405,91 @@ The User Center module in the backend management system provides:
  
 The **Role Management** feature enables efficient control over system roles and permissions, ensuring security and flexibility.  
 
+
+# System Management > Menu Management————Chen Ying
+
+This page is a menu management interface of the background management system. The following is a detailed introduction of the page:
+
+## 1. Navigation bar:
+
+There is a navigation bar on the left, which contains two tabs: Home Page and Menu Management. Menu Management is currently selected. Icons and characters in the navigation bar can help users quickly find the required functional modules.
+
+## 2. Menu list:
+
+**Menu name**: such as Home Page, Blog Management and System Management.
+
+**icon**: icon of menu item, which helps users to quickly identify menu items.
+
+**Sorting**: the sorting order of menu items. The smaller the value, the higher the priority of menu items.
+
+**Authority ID**: Authority ID of menu item, which is used to control access rights of different users.
+
+**Component name**: the name of the component corresponding to the menu item, such as "Home" and "Layout".
+
+**Status**: Displays the status of the menu item, such as "Normal".
+
+**Creation Time**: displays the creation time of the menu item in the format of "YYYY-MM-DD HH:MM:SS".
+
+**Operation**: Provides operation options for menu items, including Modify, Add and Delete.
+
+## 3. Add button function:
+
+Users can click this button to add new menu items.
+
+1) **Menu type**: directory, menu and button.
+Click to select the directory and menu, and then click the input box to slide down the directory and menu.
+
+Click the button to pop up the menu name: used to enter the name of the new menu item (required).
+Display Order: used to enter the display order of menu items (required).
+Permission ID: used to enter the permission ID of the menu item.
+Menu Status: used to select the status of menu items, normal or disabled.
+OK and Cancel buttons: Click OK to submit the form and save the new menu item. Click the Cancel button to close the dialog box without saving any changes.
+
+2) **Menu icon**: The user can click the icon selector next to it to select the icon of the menu item. After clicking, the identifier of the icon is displayed in the input box. You can select the icon you need (for example, # means no icon).
+
+3) **Menu Name**: Enter the name of the new menu item (required).
+
+4) **Display Order**: used to enter the display order of menu items (required).
+
+5) **External link**: used to select whether the menu item is external link.
+
+Yes (outer chain):
+When "Yes" is selected, it means that the menu item will be linked to an external website or external resource. For example, you can set a menu item to link to an online document, an external API interface or other websites that are not in this system. In this case, you usually need to enter the complete external URL address in the Routing Address field.
+
+No (not external chain):
+When "No" is selected, it means that the menu item will be linked to a page or component within the system. For example, you can set a menu item to link to the user management page and order management page within the system. In this case, it is usually necessary to enter the internal routing path of the system in the "Routing Address" field, rather than the complete URL.
+
+6) **Routing Address**: used to enter the routing address corresponding to the menu item (if No is selected for External Link, it needs to be filled in).
+
+7) **Component Name**: used to enter the component name corresponding to the menu item.
+
+8) **Display status**: usually used to control the visibility of menu items on the front-end interface.
+
+Normal:
+When the display status is set to "Normal", the menu item will be displayed on the front-end interface, and users can see and click the menu item.
+
+Deactivate:
+When the display status is set to "Disabled", the menu item will not be displayed on the front-end interface, and users will not be able to see the menu item. (Applicable to menu items that do not need user access temporarily, or menu items that need to be hidden under certain conditions. )
+
+9) **Menu status**: usually used to control the enabled status of menu items.
+
+Normal:
+When the menu status is set to "Normal", the menu item is enabled, and users can click and access the page or function pointed by the menu item.
+
+Deactivate:
+When the menu status is set to "Disabled", the menu item is disabled, and users cannot click and access the page or function pointed by the menu item.
+
+10) **OK and Cancel buttons**:
+Click OK to submit the form and save the new menu item. Click the Cancel button to close the dialog box without saving any changes.
+
+## 4. Operation options:
+
+**Modify**: Click this button to edit the details of the menu item.
+
+Clicking the "Modify" button on the right side of a menu item will pop up a "Modify Menu" dialog box. Used to edit existing menu items. The functions of each option function are the same as those of (3. **New button function**).
+
+**Add**: This button can add a submenu item under the current menu item.
+
+**Delete**: This button can delete the selected menu item.
+
+**This page is mainly used to manage menu items in the system. Administrators can add, modify and delete menu items through this interface, and adjust the ordering and authority identification of menu items, thus realizing flexible management of the system.**
